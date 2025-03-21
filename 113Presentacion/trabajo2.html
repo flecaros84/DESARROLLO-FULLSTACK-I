@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tecnología Investigada</title>
+    <style>
+        body {
+            display: flex;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            height: 100vh;
+        }
+
+        .menu {
+            width: 200px;
+            background: #333;
+            color: white;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .menu button {
+            background: none;
+            border: none;
+            color: white;
+            padding: 10px;
+            text-align: left;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .menu button:hover {
+            background: #555;
+        }
+
+        .content {
+            flex-grow: 1;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-size: 18px;
+            border-left: 2px solid #ddd;
+            width: 100%;
+        }
+
+        .content div {
+            width: 80%;
+            max-width: 600px;
+            text-align: justify;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="menu">
+        <button onclick="showContent('portada')">Portada</button>
+        <button onclick="showContent('historia')">Historia y Origen</button>
+        <button onclick="showContent('ventajas')">Ventajas</button>
+        <button onclick="showContent('desventajas')">Desventajas</button>
+        <button onclick="showContent('casos')">Casos de Uso</button>
+        <button onclick="showContent('empresas')">Empresas y Marcas</button>
+        <button onclick="showContent('popularidad')">Popularidad de la Técnologia</button>
+        <button onclick="showContent('conclusion')">Conclusión</button>
+        <button onclick="showContent('bibliografia')">Bibliografía</button>
+    </div>
+    <div class="content">
+        <div id="content">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg"
+                alt="Descripción de la imagen">
+            <h2>Selecciona una opción del menú.</h2>
+            <p>Aquí aparecerá el contenido correspondiente.</p>
+        </div>
+    </div>
+
+    <script>
+        function showContent(option) {
+            const content = {
+                portada: `
+                        <img src="https://www.edureka.co/blog/wp-content/uploads/2019/08/node-logo.png"
+                alt="nodelogo" width="300" height="auto">
+                        <h2>Nombre de la Tecnología Investigada→ Node.Js</h2>
+                        <h2>Nombres Completos Integrantes</h2>
+                        <ul>
+                            <li>Fabián Emilio Lecaros Ampuero</li>
+                            <li>Franzo Isaac Ruz Valenzuela</li>
+                            <li>Hector Aguila</li>
+                        </ul>`,
+                historia: `                        <img src="https://cdn.cloudinary.com/stichting-frontend-amsterdam/image/upload/v1674813354/dev/Dahl_Ryan_wg0lg5.png"
+                alt="creador" width="300" height="auto">
+                <h2>¿Cuándo y quién la creó?</h2><p>
+                    <p>Node.js fue creado en 2009 por Ryan Dahl, un desarrollador de software estadounidense.</p>
+                    <h2>¿Por qué surgió?</h2>
+                     <p>Antes de Node.js, JavaScript solo se usaba en navegadores para desarrollo web. Ryan Dahl quería una forma de usar JavaScript en el servidor para manejar muchas conexiones simultáneamente sin bloquear procesos, algo que los servidores tradicionales como Apache no hacían bien.
+                    Node.js nació como una solución basada en:</p>
+                        <ul>
+                        <li>V8 (el motor de JavaScript de Chrome) → Para ejecutar JavaScript rápido fuera del navegador.</li>
+                        <li>Modelo asíncrono y no bloqueante → Para manejar muchas peticiones sin consumir demasiados recursos.</li></p>
+                        </ul>`,
+                ventajas: `<img src="https://miro.medium.com/v2/resize:fit:492/1*NCnxWDRt28DuWV2djn2enw.png"
+                alt="nodelogo" width="300" height="auto">
+                <h2>¿Cuáles son sus principales beneficios?</h2>
+                
+                <ul>
+                    <li>Arquitectura asíncrona y no bloqueante, ideal para manejar múltiples solicitudes al mismo tiempo.</li>
+                    <li>Alto rendimiento gracias al motor V8 de Google Chrome que compila JavaScript a código máquina.</li>
+                    <li>Uso de un solo lenguaje (JavaScript) tanto en frontend como en backend.</li>
+                    <li>Gran comunidad y ecosistema de módulos a través de NPM.</li>
+                    <li>Escalabilidad eficiente para manejar miles de conexiones concurrentes.</li>
+                    <li>Facilidad de desarrollo con frameworks como Express.js.</li>
+                    <li>Soporte para arquitecturas basadas en microservicios.</li>
+                    <li>Integración sencilla con JSON, facilitando la conexión con bases de datos NoSQL.</li>
+                    <li>Compatible con servicios en la nube y entornos serverless como AWS Lambda.</li>
+                    <li>Ideal para aplicaciones en tiempo real como chats, WebSockets y transmisiones en vivo.</li>
+                </ul>
+                `,
+                desventajas: `<h2>¿Qué limitaciones o dificultades tiene?</h2>
+               
+                <ul>
+                    <li>El modelo de un solo hilo puede ser un problema para tareas que requieren alto uso de CPU.</li>
+                    <li>No es la mejor opción para aplicaciones que requieren procesamiento intensivo, como IA o grandes cálculos.</li>
+                    <li>Las aplicaciones pueden volverse difíciles de mantener debido al código asíncrono y el uso excesivo de callbacks (callback hell).</li>
+                    <li>El ecosistema de paquetes de NPM es enorme, pero tiene problemas de seguridad debido a la falta de control en algunas librerías.</li>
+                    <li>El código basado en JavaScript puede ser propenso a errores si no se usa TypeScript u otras herramientas de tipado.</li>
+                    <li>Las actualizaciones frecuentes de Node.js pueden generar problemas de compatibilidad con paquetes y módulos.</li>
+                    <li>No es ideal para aplicaciones con operaciones pesadas en bases de datos relacionales debido a su enfoque asíncrono.</li>
+                    <li>El consumo de memoria puede ser alto en comparación con otras tecnologías más optimizadas para servidores.</li>
+                    <li>El ecosistema es joven en comparación con tecnologías como Java o .NET, lo que puede generar incertidumbre a largo plazo.</li>
+                    <li>El rendimiento en operaciones de múltiples hilos es inferior al de lenguajes como Go o Java.</li>
+                </ul>
+                `,
+                casos: `<h2>¿En qué tipos de proyectos se usa? ¿Cuándo es recomendable?</h2>
+                <ul>
+                    <li>Aplicaciones en tiempo real como chats, mensajería instantánea y notificaciones push.</li>
+                    <li>Plataformas de streaming como Netflix y Twitch debido a su alto rendimiento y manejo eficiente de conexiones simultáneas.</li>
+                    <li>Desarrollo de APIs RESTful y GraphQL para backend de aplicaciones web y móviles.</li>
+                    <li>Aplicaciones con WebSockets para comunicación bidireccional en tiempo real.</li>
+                    <li>Microservicios y arquitecturas escalables, permitiendo dividir la aplicación en pequeños módulos independientes.</li>
+                    <li>Automatización de tareas con herramientas como Gulp, Webpack y otros paquetes de NPM.</li>
+                    <li>Aplicaciones de IoT (Internet de las Cosas) para manejar múltiples dispositivos conectados.</li>
+                    <li>Desarrollo de servidores proxy y middleware para gestionar peticiones y autenticación.</li>
+                    <li>Aplicaciones serverless en plataformas como AWS Lambda y Google Cloud Functions.</li>
+                    <li>Plataformas de comercio electrónico con alto tráfico, como Walmart y eBay.</li>
+                </ul>`,
+                empresas: `<img src="https://miro.medium.com/v2/resize:fit:1100/format:webp/1*mxjWA0mI7XfS1tpWAgjhPw.png"
+                alt="empresas" width="600" height="auto">
+                    <h2>Empresas y Marcas</h2><p>Ejemplos reales de uso en la industria.</p>
+                <ul>
+                    <li><b>Netflix</b> - Usa Node.js para mejorar el rendimiento de su plataforma de streaming y reducir los tiempos de carga.</li>
+                    <li><b>PayPal</b> - Migró su backend a Node.js y logró reducir el tiempo de respuesta en un 35%.</li>
+                    <li><b>LinkedIn</b> - Reescribió su backend en Node.js y mejoró la escalabilidad, reduciendo la cantidad de servidores necesarios.</li>
+                    <li><b>Uber</b> - Utiliza Node.js para procesar solicitudes en tiempo real y mejorar la eficiencia del sistema de viajes.</li>
+                    <li><b>eBay</b> - Implementó Node.js en su infraestructura para mejorar la velocidad de respuesta en su plataforma.</li>
+                    <li><b>Walmart</b> - Usa Node.js para gestionar millones de transacciones y ofrecer una experiencia de compra más rápida.</li>
+                    <li><b>NASA</b> - Migró algunos de sus sistemas a Node.js para mejorar la eficiencia en el procesamiento de datos.</li>
+                    <li><b>Twitter</b> - Ha utilizado Node.js para optimizar el rendimiento de algunos servicios.</li>
+                    <li><b>Yahoo</b> - Usa Node.js en varios de sus servicios web para mejorar la velocidad de carga.</li>
+                    <li><b>Medium</b> - Su backend está construido con Node.js para manejar grandes volúmenes de contenido y tráfico.</li>
+                </ul>
+                
+                `,
+                conclusion: `<h2>Conclusión</h2><p>¿Es una buena opción para un desarrollador Full Stack? ¿Por qué?</p>`,
+                bibliografia: `<h2>Bibliografía</h2><p>Chat GPT</p>`,
+                popularidad: `<img src="https://i.postimg.cc/T3Cnz7xv/nodestats.jpg"
+                alt="nodestats">`
+            };
+            document.getElementById("content").innerHTML = content[option];
+        }
+    </script>
+</body>
+
+</html>

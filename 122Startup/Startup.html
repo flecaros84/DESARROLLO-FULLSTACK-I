@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Startup</title>
+    <style>
+        body {
+            display: flex;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            height: 100vh;
+        }
+
+        .menu {
+            width: 200px;
+            background: #333;
+            color: white;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .menu button {
+            background: none;
+            border: none;
+            color: white;
+            padding: 10px;
+            text-align: left;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .menu button:hover {
+            background: #555;
+        }
+
+        .content {
+            flex-grow: 1;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-size: 18px;
+            border-left: 2px solid #ddd;
+            width: 100%;
+        }
+
+        .content div {
+            width: 80%;
+            max-width: 800px;
+            text-align: justify;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="menu">
+        <button onclick="showContent('actividad113')">Acta de Constitución</button>
+    </div>
+    <div class="content">
+        <div id="content">
+            <h2>Selecciona una opción del menú.</h2>
+            <p>Aquí aparecerá el contenido correspondiente.</p>
+        </div>
+    </div>
+
+    <script>
+        function showContent(option) {
+            const content = {
+                actividad113: `
+                    <h2>Acta de Constitución.</h2>
+                        <ul>
+                            <li><b>Nombre de Empresa:</b> TechMind</li>
+                            <li><b>Misión:</b> Apoyar a las empresas de la región desarrollando soluciones de software innovadoras.</li>
+                            <li><b>Visión:</b> Ser líderes en el desarrollo de soluciones tecnológicas para empresas.</li>
+                            <li><b>Valores:</b>
+                                <ul>
+                                    <li>Creatividad y pensamiento disruptivo.</li>
+                                    <li>Pasión por la excelencia.</li>
+                                    <li>Adaptabilidad.</li>
+                                </ul>
+                        </ul>
+                `
+            };
+            document.getElementById("content").innerHTML = content[option];
+        }
+    </script>
+</body>
+
+</html>

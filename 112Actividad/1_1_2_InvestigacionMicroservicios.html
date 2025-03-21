@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Actividad 1.1.2: Investigación de arquitecturas</title>
+  <link rel="stylesheet" href="rgb.css"> <!-- Vinculación del CSS -->
+</head>
+
+<body>
+  <main class="content">
+    <h1>Actividad 1.1.2: Investigación de arquitecturas</h1>
+    <div class="temas-container">
+      <label for="Temas">Selecciona un tema:</label>
+      <select id="Temas">
+        <option value="0">Selecciona una opción</option>
+        <option value="1">Arquitectura Monolítica</option>
+        <option value="2">Arquitectura de Capas (N-tier)</option>
+        <option value="3">Arquitectura Orientada a Servicios (SOA)</option>
+        <option value="4">Arquitectura de Microservicios</option>
+        <option value="5">Arquitectura Multitenant</option>
+        <option value="6">Arquitectura Event-Driven</option>
+        <option value="7">Arquitectura Micro Frontends</option>
+      </select>
+    </div>
+
+    <div id="contenido"></div>
+  </main>
+
+  <script>
+    const select = document.getElementById('Temas');
+    const contenido = document.getElementById('contenido');
+
+    select.addEventListener('change', function () {
+      let texto = '';
+      const opcionSeleccionada = select.value;
+
+      switch (opcionSeleccionada) {
+        case '1':
+          texto = `
+            <h2>Arquitectura Monolítica</h2>
+            <h3>Definición:</h3>
+            <p>La arquitectura monolítica es un modelo de diseño de software donde todos los componentes y funcionalidades de una aplicación están integrados en un único bloque o unidad.</p>
+            <h3>Explicación con tus palabras:</h3>
+            <p>Es como tener todo el código de una aplicación en un solo proyecto grande.</p>
+            <h3>Beneficios:</h3>
+            <ul>
+              <li>Desarrollo y despliegue sencillos.</li>
+              <li>Facilidad para la depuración y pruebas.</li>
+              <li>Menor latencia de comunicación entre componentes.</li>
+            </ul>
+            <h3>Desafíos:</h3>
+            <ul>
+              <li>Dificultad para escalar horizontalmente.</li>
+              <li>Mantenimiento complejo a medida que la aplicación crece.</li>
+              <li>Implementación de cambios y actualizaciones más riesgosa.</li>
+            </ul>
+            <h3>Empresas que la utilizan:</h3>
+            <ul>
+              <li>Startups y pequeñas empresas que buscan una solución rápida y sencilla.</li>
+              <li>Aplicaciones tradicionales y heredadas de empresas más grandes.</li>
+            </ul>
+          `;
+          break;
+        case '2':
+          texto = `
+          <h2>Arquitectura de Capas (N-tier)</h2>
+          <h3>Definición:</h3>
+          <p>División en presentación, lógica y datos para modularizar el sistema.</p>
+          <h3>Explicación con tus palabras:</h3>
+    <p>Divir la aplicación en varios módulos.</p>
+    <h3>Beneficios:</h3>
+    <ul>
+      <li>Separación de responsabilidades mejora la mantenibilidad.</li>
+      <li>Facilidad para reutilizar y modificar componentes.</li>
+      <li>Mayor seguridad y control en el acceso a los datos.</li>
+    </ul>
+    <h3>Desafíos:</h3>
+    <ul>
+      <li>Mayor complejidad en la implementación.</li>
+      <li>Posible impacto en el rendimiento por la comunicación entre capas.</li>
+      <li>Requiere una adecuada gestión de dependencias.</li>
+    </ul>
+    <h3>Empresas que la utilizan:</h3>
+    <ul>
+      <li>Aplicaciones empresariales y de negocio que requieren modularidad.</li>
+      <li>Sistemas bancarios y de gestión que necesitan seguridad y escalabilidad.</li>
+    </ul>
+  `;
+          break;
+        case '3':
+          texto = `
+    <h2>Arquitectura Orientada a Servicios (SOA)</h2>
+    <h3>Definición:</h3>
+    <p>Componentes estructurados como servicios independientes que interactúan entre sí.</p>
+    <h3>Explicación con tus palabras:</h3>
+    <p>Aplicación estructurada en servicios que se comunican entre sí.</p>
+    <h3>Beneficios:</h3>
+    <ul>
+      <li>Reutilización de servicios en diferentes aplicaciones.</li>
+      <li>Facilita la integración con otros sistemas.</li>
+      <li>Escalabilidad mejorada al distribuir funciones en servicios separados.</li>
+    </ul>
+    <h3>Desafíos:</h3>
+    <ul>
+      <li>Mayor complejidad en la administración de servicios.</li>
+      <li>Dependencia de estándares de comunicación (SOAP, REST).</li>
+      <li>Posible latencia en la comunicación entre servicios.</li>
+    </ul>
+    <h3>Empresas que la utilizan:</h3>
+    <ul>
+      <li>Empresas con sistemas grandes y distribuidos.</li>
+      <li>Corporaciones que necesitan integrar múltiples plataformas.</li>
+    </ul>
+  `;
+          break;
+        case '4':
+          texto = `
+    <h2>Arquitectura de Microservicios</h2>
+    <h3>Definición:</h3>
+    <p>Aplicación dividida en pequeños servicios independientes que pueden ser escalados y desplegados por separado.</p>
+    <h3>Explicación con tus palabras:</h3>
+    <p>Microservicios que se pueden desplegar y escalar por separado.</p>
+    <h3>Beneficios:</h3>
+    <ul>
+      <li>Escalabilidad flexible de cada servicio.</li>
+      <li>Facilidad para adoptar nuevas tecnologías en servicios específicos.</li>
+      <li>Mayor tolerancia a fallos, ya que los servicios pueden fallar de forma aislada.</li>
+    </ul>
+    <h3>Desafíos:</h3>
+    <ul>
+      <li>Complejidad en la gestión de múltiples servicios.</li>
+      <li>Necesidad de una infraestructura adecuada para comunicación y monitoreo.</li>
+      <li>Mayor consumo de recursos debido a la separación de servicios.</li>
+    </ul>
+    <h3>Empresas que la utilizan:</h3>
+    <ul>
+      <li>Netflix, Amazon y otras empresas con alto tráfico.</li>
+      <li>Organizaciones que necesitan desplegar cambios rápidos y escalables.</li>
+    </ul>
+  `;
+          break;
+        case '5':
+          texto = `
+    <h2>Arquitectura Multitenant</h2>
+    <h3>Definición:</h3>
+    <p>Una instancia del software sirve a múltiples clientes, optimizando el uso de recursos.</p>
+    <h3>Explicación con tus palabras:</h3>
+    <p>Optimizar utilizando una instancia para varios clientes.</p>
+    <h3>Beneficios:</h3>
+    <ul>
+      <li>Reducción de costos operativos al compartir recursos.</li>
+      <li>Facilidad para escalar y gestionar múltiples clientes.</li>
+      <li>Actualizaciones y mantenimiento centralizados.</li>
+    </ul>
+    <h3>Desafíos:</h3>
+    <ul>
+      <li>Mayor riesgo de problemas de seguridad entre clientes.</li>
+      <li>Personalización limitada para cada cliente.</li>
+      <li>Complejidad en la administración de recursos compartidos.</li>
+    </ul>
+    <h3>Empresas que la utilizan:</h3>
+    <ul>
+      <li>Proveedores de SaaS como Salesforce y Google Workspace.</li>
+      <li>Plataformas de hosting compartido.</li>
+    </ul>
+  `;
+          break;
+        case '6':
+          texto = `
+    <h2>Arquitectura Event-Driven</h2>
+    <h3>Definición:</h3>
+    <p>Los sistemas reaccionan a eventos y disparan acciones en consecuencia.</p>
+    <h3>Explicación con tus palabras:</h3>
+    <p>Acción y reacción llevado a los sistemas.</p>
+    <h3>Beneficios:</h3>
+    <ul>
+      <li>Alta capacidad de respuesta y escalabilidad.</li>
+      <li>Desacoplamiento entre componentes.</li>
+      <li>Facilita la integración con múltiples sistemas.</li>
+    </ul>
+    <h3>Desafíos:</h3>
+    <ul>
+      <li>Mayor complejidad en el manejo de eventos.</li>
+      <li>Dificultad en la depuración y monitoreo.</li>
+      <li>Dependencia en la gestión de eventos y mensajes.</li>
+    </ul>
+    <h3>Empresas que la utilizan:</h3>
+    <ul>
+      <li>Aplicaciones financieras y de IoT.</li>
+      <li>Plataformas de mensajería y notificaciones en tiempo real.</li>
+    </ul>
+  `;
+          break;
+        case '7':
+          texto = `
+    <h2>Arquitectura Micro Frontends</h2>
+    <h3>Definición:</h3>
+    <p>La interfaz de usuario se divide en pequeñas partes independientes que pueden ser desarrolladas por diferentes equipos.</p>
+    <h3>Explicación con tus palabras:</h3>
+    <p>Se divide el frontent en varias partes desarrolladas independientemente.</p>
+    <h3>Beneficios:</h3>
+    <ul>
+      <li>Permite la escalabilidad y autonomía de los equipos.</li>
+      <li>Facilita la actualización y evolución de componentes individuales.</li>
+      <li>Integración flexible de diferentes tecnologías.</li>
+    </ul>
+    <h3>Desafíos:</h3>
+    <ul>
+      <li>Complejidad en la coordinación entre equipos.</li>
+      <li>Gestión de rendimiento y carga en el cliente.</li>
+      <li>Consistencia en la experiencia de usuario.</li>
+    </ul>
+    <h3>Empresas que la utilizan:</h3>
+    <ul>
+      <li>Spotify, Amazon y grandes plataformas web.</li>
+      <li>Equipos que desarrollan interfaces modulares.</li>
+    </ul>
+  `;
+          break;
+        default:
+          texto = '';
+      }
+
+      contenido.innerHTML = texto;
+      contenido.style.display = texto ? 'block' : 'none';
+    });
+  </script>
+</body>
+
+</html>

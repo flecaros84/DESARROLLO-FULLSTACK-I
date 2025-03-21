@@ -1,0 +1,54 @@
+/* Estilos para intento.html con colores en formato RGB */
+
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: rgb(240, 240, 240); /* Gris claro */
+    color: rgb(30, 30, 30); /* Texto oscuro */
+  }
+  
+  h1 {
+    color: rgb(9, 15, 97); /* Azul oscuro */
+  }
+  
+  #contenido {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid rgb(180, 180, 180); /* Gris medio */
+    background-color: rgb(255, 255, 255); /* Blanco */
+    color: rgb(50, 50, 50); /* Texto gris oscuro */
+    border-radius: 5px;
+  }
+  
+  .temas-container {
+    background-color: rgb(220, 220, 250); /* Azul muy claro */
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  select {
+    background-color: rgb(255, 255, 255); /* Fondo blanco */
+    color: rgb(0, 0, 0); /* Texto negro */
+    border: 1px solid rgb(150, 150, 150); /* Borde gris */
+    padding: 5px;
+    border-radius: 3px;
+  }
+  
+  h2 {
+    color: rgb(9, 97, 15); /* Verde oscuro */
+  }
+  
+  h3 {
+    color: rgb(97, 15, 9); /* Rojo oscuro */
+  }
+  
+  ul {
+    padding-left: 20px;
+  }
+  
+  ul li {
+    margin-bottom: 5px;
+  }
+  
