@@ -38,14 +38,14 @@
 
         .content {
             flex-grow: 1;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            padding: 40px 20px;
+            overflow-y: auto;
+            /* Esto agrega scroll vertical si es necesario */
             text-align: center;
             font-size: 18px;
             border-left: 2px solid #ddd;
             width: 100%;
+            box-sizing: border-box;
         }
 
         .content div {
@@ -76,7 +76,11 @@
 
 <body>
     <div class="menu">
-        <button onclick="showContent('actividad113')">Acta de Constitución</button>
+        <button onclick="showContent('acta_constitucion')">Acta de Constitución</button>
+        <button onclick="showContent('skills1')">Skills Colaborador 1</button>
+        <button onclick="showContent('skills2')">Skills Colaborador 2</button>
+        <button onclick="showContent('skills3')">Skills Colaborador 3</button>
+        <button onclick="showContent('skills4')">Skills Colaborador 4</button>
     </div>
     <div class="content">
         <div id="content">
@@ -88,20 +92,74 @@
     <script>
         function showContent(option) {
             const content = {
-                actividad113: `
+                acta_constitucion: `
                     <h2>Acta de Constitución.</h2>
-                        <ul>
-                            <li><b>Nombre de Empresa:</b> TechMind</li>
-                            <li><b>Misión:</b> Apoyar a las empresas de la región desarrollando soluciones de software innovadoras.</li>
-                            <li><b>Visión:</b> Ser líderes en el desarrollo de soluciones tecnológicas para empresas.</li>
-                            <li><b>Valores:</b>
-                                <ul>
-                                    <li>Creatividad y pensamiento disruptivo.</li>
-                                    <li>Pasión por la excelencia.</li>
-                                    <li>Adaptabilidad.</li>
-                                </ul>
-                        </ul>
-                `
+                    <ul>
+                        <li><b>Nombre de Empresa:</b> TechMind</li><br>
+                        <li><b>Misión:</b> Apoyar a las empresas de la región desarrollando soluciones de software innovadoras.</li><br>
+                        <li><b>Visión:</b> Ser líderes en el desarrollo de soluciones tecnológicas para empresas.</li><br>
+                        <li><b>Valores:</b>
+                            <ul><br>
+                                <li>Creatividad y pensamiento disruptivo.</li>
+                                <li>Pasión por la excelencia.</li>
+                                <li>Adaptabilidad.</li>
+                            </ul><br>
+                        <li><b>Estructura Organizacional:</b>
+                            <ul><br>
+                                <li><b>Director de Proyecto y Desarrollador Frontend:</b> Fabián Lecaros</li>
+                                <li><b>Analista y Arquitecto de Software:</b> Héctor Águila</li>
+                                <li><b>Desarrollador Frontend, UX y UI:</b> Franco Ruz</li>
+                                <li><b>Tester:</b> Cesar Veliz</li>
+                            </ul>
+                    </ul>
+                `,
+                skills1: `
+                    <h2>Colaborador 1 - Fabián Lecaros</h2>
+                    <img src="img/fabian.jpg" alt="Foto de Fabián Lecaros" style="width:150px; border-radius: 10px; margin-bottom: 10px;">
+                    <br>
+                    <strong>Edad:</strong> 40 años<br>
+                    <strong>Residencia:</strong> Puerto Montt<br>
+                    <strong>GitHub:</strong> flecaros84<br>
+                    <strong>Instagram:</strong> <a href="https://www.instagram.com/fabian_lecaros">Link</a><br>
+                    <strong>Web:</strong> <a href="https://www.linkedin.com/in/fabi%C3%A1n-lecaros-8bb63736">Link</a> 
+
+                    <h3>Perfil Profesional:</h3>
+                    <p>Fabián es un Ingeniero Comercial de la Universidad Austral de Chile, con un Master en la Montpellier Business School en Francia.
+                    Desde el año 2024 estudia Ingenieria Informática en Duoc UC, para fortalecer sus habilidades técnologicas y de análisis de datos.
+                    Junto con la experiencia propia de su primera profesión en temas financieros y administrativos, en el área técnologica 
+                    tiene experiencia utilizando Python y SQL Server, y sigue experimentando académicamente con otros lenguajes.
+                    Es desarrollador certificado en Python Entry Level.</p>
+
+                    <h3>Habilidades Técnicas:</h3>
+                    <ul>
+                        <li>Lenguajes de programación: Python, Java, R, VBA</li>
+                        <li>Tecnologías web: Bootstrap, JavaScript</li>
+                        <li>Bases de datos: Conocimiento de MySQL, SQL Server y Oracle Server</li>
+                        <li>Desarrollo Front-end: Creación de formularios web</li>
+                        <li>Desarrollo Back-end: Aplicaciones basadas en Java y Python</li>
+                        <li>Liderazgo: Capacidad para organizar y sacar adelante al equipo</li>
+                    </ul>
+
+                    <h3>Intereses y Pasatiempos:</h3>
+                    <p>Gusta de cultivar el cuerpo y la mente. Es aficionado a la lectura de temas ajenos a su profesión, 
+                        principalmente la filosofía y ciencia. Entrena regularmente ejercicios de fuerza corporal y se 
+                        mueve siempre que puede en bicicleta. Le gustan los videojuegos, especialmente los RPG, 
+                        el juego de cartas Magic The Gathering y los juegos de rol en mesa.  
+                        </p>
+
+                    <h3>Proyectos Destacados:</h3>
+                    <ul>
+                        <li>Diseño y creación de bases de datos en SQL Server.</li>
+                        <li>Automatización de generación de documentos en Python enlazando desde SQL Server.</li>
+                        <li>Implementación de reportes PowerBi.</li>
+                    </ul>
+
+                    <h3>Objetivos Futuros:</h3>
+                    <p>Combinar sus dos profesiones como científico de datos.</p>
+                `,
+                skills2: `<h2>Colaborador 2 - Héctor Águila</h2><p>Ficha en desarrollo...</p>`,
+                skills3: `<h2>Colaborador 3 - Franco Ruz</h2><p>Ficha en desarrollo...</p>`,
+                skills4: `<h2>Colaborador 4 - Cesar Veliz</h2><p>Ficha en desarrollo...</p>`
             };
             document.getElementById("content").innerHTML = content[option];
         }
