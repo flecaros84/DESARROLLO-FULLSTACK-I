@@ -77,10 +77,11 @@
 <body>
     <div class="menu">
         <button onclick="showContent('acta_constitucion')">Acta de Constitución</button>
-        <button onclick="showContent('skills1')">Skills Colaborador 1</button>
-        <button onclick="showContent('skills2')">Skills Colaborador 2</button>
-        <button onclick="showContent('skills3')">Skills Colaborador 3</button>
-        <button onclick="showContent('skills4')">Skills Colaborador 4</button>
+        <button onclick="showContent('skills1')">Ficha Colaborador 1</button>
+        <button onclick="showContent('skills2')">Ficha Colaborador 2</button>
+        <button onclick="showContent('skills3')">Ficha Colaborador 3</button>
+        <button onclick="showContent('skills4')">Ficha Colaborador 4</button>
+        <button onclick="showContent('minuta')">Minuta</button>
     </div>
     <div class="content">
         <div id="content">
@@ -110,6 +111,15 @@
                                 <li><b>Analista y Arquitecto de Software:</b> Héctor Águila</li>
                                 <li><b>Desarrollador Frontend, UX y UI:</b> Franco Ruz</li>
                                 <li><b>Tester:</b> Cesar Veliz</li>
+                            </ul><br>
+                        
+                        <li><b>Orden del Día:</b>
+                            <ul><br>
+                                <li>Se establece la misión, visión y valores de la empresa</li>
+                                <li>Se discute la estructura organizacional</li>
+                                <li>Se definen los roles y responsabilidades de cada miembro del equipo</li>
+                                <li>Se designa como representante lehal al Director de Proyecto</li>
+                                <li>Se da cierre a la reunión</li>
                             </ul>
                     </ul>
                 `,
@@ -199,7 +209,32 @@
                     <h3>Objetivos Futuros:</h3>
                     <p>Héctor está decidido a seguir expandiendo su conocimiento en el campo del desarrollo web y busca aprender más sobre tecnologías emergentes. También desea combinar su amor por la música con su experiencia en programación.</p>`,
                 skills3: `<h2>Colaborador 3 - Franco Ruz</h2><p>Ficha en desarrollo...</p>`,
-                skills4: `<h2>Colaborador 4 - Cesar Veliz</h2><p>Ficha en desarrollo...</p>`
+                skills4: `<h2>Colaborador 4 - Cesar Veliz</h2><p>Ficha en desarrollo...</p>`,
+                minuta: `<h2>Minuta</h2>
+                <h3>Participantes:</h3>
+                    <ul>
+                    <li>Héctor Aguila</li>
+                    <li>Fabián Lecaros</li>
+                    <li>Franco Ruz</li>
+                    <li>Cesar Veliz</li>
+                    </ul>
+                <h3>Participantes Ausentes:</h3>
+                <p>Ninguno</p>
+                <h3>Anuncios:</h3>
+                    <ul>
+                    <li>Se hacen últimos ajustes a acta y fichas de habilidades</li>
+                    <li>Se da a conocer al equipo los diversos trabajos que se tienen en carpeta</li>
+                    </ul>
+                <h3>Debates:</h3>
+                    <ul>
+                    <li>Se discute como organizar al equipo</li>
+                    <li>Se debate respecto a los proyectos que se van a desarrollar para los distintos ramos</li>
+                    </ul>
+                <h3>Acuerdos:</h3>
+                    <ul>
+                    <li>Se usará GITHUB como plataforma para compartir archivos y organizar el trabajo.</li>
+                    <li>Se realizará una votación para elegir el proyecto de desarrollar en el semestre</li>
+                    </ul>`
             };
             document.getElementById("content").innerHTML = content[option];
         }
