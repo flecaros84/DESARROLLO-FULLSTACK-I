@@ -92,7 +92,7 @@
         function showContent(option) {
             const content = {
                 cityplan: `
-                    <h2>City Plan - - Gestión urbana y reclamos ciudadanos</h2>
+                    <h2>City Plan - Gestión urbana y reclamos ciudadanos</h2>
                     
                     <h3>Descripción del sistema:</h3>
                     <p>CityPlan es una plataforma monolítica de gobiernos locales para gestionar reclamos ciudadanos, solicitudes de obras, agenda municipal, pagos de permisos y licencias.</p>
@@ -165,10 +165,15 @@
                         <li>Tareas técnicas</li>
                         <li>Revisión final</li>
                     </ul>
+                    </br>
+                    <img src="img/backlog.png" alt="backlog" style="width:1200px; border-radius: 10px; margin-bottom: 10px;">
 
                     <h3>Propuesta técnica simple</h4>
                     <p>Se plantea reescribir la arquitectura con microservicios independientes, autenticación segura (OAuth2), API Gateway y sistema de auditoría de decisiones automáticas.</p>
-                    `,
+                    
+                    <h3>Diagrama de Arquitectura de Microservicios</h4>
+                    </br>
+                    <img src="img/diagrama.png" alt="diagrama" style="width:1000px; border-radius: 10px; margin-bottom: 10px;">`,
                 etico: `
                     <h2>Parte 3: Dilema ético y solución</h3>
 
@@ -185,7 +190,6 @@
                         <li>Opción de reclamo anónimo con cifrado.</li>
                         <li>Inclusión de criterios sociales para distribución justa de recursos.</li>
                     </ul>
-
                     `
             };
             document.getElementById("content").innerHTML = content[option];
