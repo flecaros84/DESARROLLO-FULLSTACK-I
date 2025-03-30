@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Startup</title>
+    <title>Frameworks: Java y Spring Boot</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css">
     <style>
         body {
             display: flex;
@@ -14,7 +15,7 @@
         }
 
         .menu {
-            width: 200px;
+            width: 250px;
             background: #333;
             color: white;
             padding: 10px;
@@ -30,6 +31,7 @@
             text-align: left;
             cursor: pointer;
             font-size: 16px;
+            width: 100%;
         }
 
         .menu button:hover {
@@ -38,10 +40,9 @@
 
         .content {
             flex-grow: 1;
-            padding: 40px 20px;
+            padding: 20px;
             overflow-y: auto;
-            /* Esto agrega scroll vertical si es necesario */
-            text-align: center;
+            text-align: justify;
             font-size: 18px;
             border-left: 2px solid #ddd;
             width: 100%;
@@ -51,7 +52,15 @@
         .content div {
             width: 80%;
             max-width: 800px;
-            text-align: justify;
+            margin: 0 auto;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+            border-radius: 10px;
         }
 
         table {
@@ -71,6 +80,19 @@
         th {
             background-color: #f2f2f2;
         }
+
+        pre {
+            background-color: #333;
+            color: #fff;
+            border: 1px solid #ddd;
+            padding: 10px;
+            overflow-x: auto;
+            border-radius: 5px;
+        }
+        .content ul {
+            list-style-type: disc;
+            margin-left: 40px;
+        }
     </style>
 </head>
 
@@ -80,6 +102,10 @@
         <button onclick="showContent('java_sintax')">Java: Sintaxis y Estructura Básica</button>
         <button onclick="showContent('java_paradigm')">Java: Paradigmas Soportados</button>
         <button onclick="showContent('java_casos')">Java: Casos de Uso</button>
+        <button onclick="showContent('springboot_intro')">Spring Boot: Introducción</button>
+        <button onclick="showContent('springboot_historia')">Spring Boot: Historia</button>
+        <button onclick="showContent('springboot_func')">Spring Boot: Funcionalidades</button>
+        <button onclick="showContent('springboot_micro')">Spring Boot: Microservicios</button>
         <button onclick="showContent('spring_car')">Spring: Caracteristicas</button>
         <button onclick="showContent('spring_v_d')">Spring: Ventajas y Desventajas</button>
         <button onclick="showContent('spring_pop')">Spring: Popularidad y Uso</button>
@@ -91,68 +117,96 @@
             <p>Aquí aparecerá el contenido correspondiente.</p>
         </div>
     </div>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
     <script>
         function showContent(option) {
             const content = {
                 java_historia: `
                     <h2>Historia de Java</h2>
-                    <img src="img/Java.jpg" alt="Logo de Java" style="width:150px; border-radius: 10px; margin-bottom: 10px;"></br>
+                    <img src="img/Java.jpg" alt="Logo de Java">
                     <p>Java es un lenguaje de programación de alto nivel, orientado a objetos y diseñado para ser independiente de la plataforma. Fue desarrollado por Sun Microsystems (ahora propiedad de Oracle Corporation) y lanzado oficialmente en 1995. A continuación, se presenta un resumen de su historia y desarrollo:</p>
                     <h3>1991:</h3>
-                    <p>James Gosling, Mike Sheridan y Patrick Naughton, ingenieros de Sun Microsystems, comienzan a trabajar en un proyecto de software para dispositivos electrónicos de consumo. El proyecto se conoce como "Green Project" y se centra en la creación de un lenguaje de programación para dispositivos inteligentes.</p></li>
+                    <p>James Gosling, Mike Sheridan y Patrick Naughton, ingenieros de Sun Microsystems, comienzan a trabajar en un proyecto de software para dispositivos electrónicos de consumo. El proyecto se conoce como "Green Project" y se centra en la creación de un lenguaje de programación para dispositivos inteligentes.</p>
                     <h3>1992:</h3>
-                    <p>El equipo de "Green Project" desarrolla un lenguaje de programación llamado "Oak", inspirado en el roble que crece frente a la oficina de James Gosling. Oak se diseñó para ser portátil, seguro y fácil de usar en dispositivos electrónicos.</p></li>
+                    <p>El equipo de "Green Project" desarrolla un lenguaje de programación llamado "Oak", inspirado en el roble que crece frente a la oficina de James Gosling. Oak se diseñó para ser portátil, seguro y fácil de usar en dispositivos electrónicos.</p>
                     <h3>1994:</h3>
-                    <p>El equipo de "Green Project" se da cuenta de que el mercado de dispositivos electrónicos de consumo no es tan grande como esperaban y deciden cambiar su enfoque. Reorientan Oak para que sea un lenguaje de programación para la web y lo renombran como "Java".</p></li>
+                    <p>El equipo de "Green Project" se da cuenta de que el mercado de dispositivos electrónicos de consumo no es tan grande como esperaban y deciden cambiar su enfoque. Reorientan Oak para que sea un lenguaje de programación para la web y lo renombran como "Java".</p>
                     <h3>1995:</h3>
-                    
-                    <p>Java se lanza oficialmente al público el 23 de mayo de 1995. La presentación de Java en la conferencia SunWorld genera un gran interés y entusiasmo en la comunidad de desarrolladores.</p></li>
+                    <p>Java se lanza oficialmente al público el 23 de mayo de 1995. La presentación de Java en la conferencia SunWorld genera un gran interés y entusiasmo en la comunidad de desarrolladores.</p>
                     <h3>1996:</h3>
-                    
-                        <p>El equipo de desarrollo de Java lanza la primera versión de Java Development Kit (JDK) 1.0, que incluye el compilador, las bibliotecas y la máquina virtual de Java. La plataforma Java comienza a ganar popularidad en la industria del software.</p></li>
+                    <p>El equipo de desarrollo de Java lanza la primera versión de Java Development Kit (JDK) 1.0, que incluye el compilador, las bibliotecas y la máquina virtual de Java. La plataforma Java comienza a ganar popularidad en la industria del software.</p>
                     <h3>1997:</h3>
-                    
-                        <p>El equipo de desarrollo de Java lanza la versión 1.1 de JDK, que incluye mejoras en el rendimiento, la funcionalidad y la estabilidad de la plataforma Java. Java se convierte en uno de los lenguajes de programación más utilizados en la industria.</p></li>
+                    <p>El equipo de desarrollo de Java lanza la versión 1.1 de JDK, que incluye mejoras en el rendimiento, la funcionalidad y la estabilidad de la plataforma Java. Java se convierte en uno de los lenguajes de programación más utilizados en la industria.</p>
                     <h3>1998:</h3>
-                    
-                        <p>El equipo de desarrollo de Java lanza la versión 1.2 de JDK, que introduce nuevas características y mejoras significativas en la plataforma Java. La versión 1.2 de JDK se conoce como "Java 2 Platform, Standard Edition" (J2SE).</p></li>
+                    <p>El equipo de desarrollo de Java lanza la versión 1.2 de JDK, que introduce nuevas características y mejoras significativas en la plataforma Java. La versión 1.2 de JDK se conoce como "Java 2 Platform, Standard Edition" (J2SE).</p>
                     <h3>1999:</h3>
-                    
-                        <p>El equipo de desarrollo de Java lanza la versión 1.3 de JDK, que incluye mejoras en el rendimiento, la funcionalidad y la estabilidad de la plataforma Java. La versión 1.3 de JDK se conoce como "Java 2 Platform, Standard Edition, v1.3" (J2SE 1.3).</p></li>
+                    <p>El equipo de desarrollo de Java lanza la versión 1.3 de JDK, que incluye mejoras en el rendimiento, la funcionalidad y la estabilidad de la plataforma Java. La versión 1.3 de JDK se conoce como "Java 2 Platform, Standard Edition, v1.3" (J2SE 1.3).</p>
                     <h3>2000:</h3>
-                    
-                        <p>El equipo de desarrollo de Java lanza la versión 1.4 de JDK, que introduce nuevas características y mejoras significativas en la plataforma Java. La versión 1.4 de JDK se conoce como "Java 2 Platform, Standard Edition, v1.4" (J2SE 1.4).</p></li>
+                    <p>El equipo de desarrollo de Java lanza la versión 1.4 de JDK, que introduce nuevas características y mejoras significativas en la plataforma Java. La versión 1.4 de JDK se conoce como "Java 2 Platform, Standard Edition, v1.4" (J2SE 1.4).</p>
                     <h3>2002:</h3>
-                    
-                        <p>El equipo de desarrollo de Java lanza la versión 1.5 de JDK, que introduce nuevas características y mejoras significativas en la plataforma Java. La versión 1.5 de JDK se conoce como "Java 2 Platform, Standard Edition, v1.5" (J2SE 1.5) o "Java 5".</p></li>
+                    <p>El equipo de desarrollo de Java lanza la versión 1.5 de JDK, que introduce nuevas características y mejoras significativas en la plataforma Java. La versión 1.5 de JDK se conoce como "Java 2 Platform, Standard Edition, v1.5" (J2SE 1.5) o "Java 5".</p>
                     <h3>2006:</h3>
-                    
-                        <p>El equipo de desarrollo de Java lanza la versión 1.6 de JDK, que introduce nuevas características y mejoras significativas en la plataforma Java. La versión 1.6 de JDK se conoce como "Java 6".</p></li>
+                    <p>El equipo de desarrollo de Java lanza la versión 1.6 de JDK, que introduce nuevas características y mejoras significativas en la plataforma Java. La versión 1.6 de JDK se conoce como "Java 6".</p>
                     <h3>2011:</h3>
-                    
-                        <p>Oracle Corporation adquiere Sun Microsystems y se convierte en el propietario de Java. Oracle continúa el desarrollo y la evolución de la plataforma Java.</p></li>
+                    <p>Oracle Corporation adquiere Sun Microsystems y se convierte en el propietario de Java. Oracle continúa el desarrollo y la evolución de la plataforma Java.</p>
                     <h3>2014:</h3>
-                    
-                        <p>El equipo de desarrollo de Java lanza la versión 1.8 de JDK, que introduce nuevas características y mejoras significativas en la plataforma Java. La versión 1.8 de JDK se conoce como "Java 8".</p></li>
+                    <p>El equipo de desarrollo de Java lanza la versión 1.8 de JDK, que introduce nuevas características y mejoras significativas en la plataforma Java. La versión 1.8 de JDK se conoce como "Java 8".</p>
                     <h3>2017:</h3>
-                    
-                        <p>El equipo de desarrollo de Java lanza la versión 1.9 de JDK, que introduce nuevas características y mejoras significativas en la plataforma Java. La versión 1.9 de JDK se conoce como "Java 9".</p></li>
+                    <p>El equipo de desarrollo de Java lanza la versión 1.9 de JDK, que introduce nuevas características y mejoras significativas en la plataforma Java. La versión 1.9 de JDK se conoce como "Java 9".</p>
                     <h3>2020:</h3>
-                    
-                        <p>El equipo de desarrollo de Java lanza la versión 1.14 de JDK, que introduce nuevas características y mejoras significativas en la plataforma Java. La versión 1.14 de JDK se conoce como "Java 14".</p></li>
+                    <p>El equipo de desarrollo de Java lanza la versión 1.14 de JDK, que introduce nuevas características y mejoras significativas en la plataforma Java. La versión 1.14 de JDK se conoce como "Java 14".</p>
                     <h3>2021:</h3>
-                    
-                        <p>El equipo de desarrollo de Java lanza la versión 1.16 de JDK, que introduce nuevas características y mejoras significativas en la plataforma Java. La versión 1.16 de JDK se conoce como "Java 16".</p></li>
+                    <p>El equipo de desarrollo de Java lanza la versión 1.16 de JDK, que introduce nuevas características y mejoras significativas en la plataforma Java. La versión 1.16 de JDK se conoce como "Java 16".</p>
                     <h3>2022:</h3>
-                    
-                        <p>El equipo de desarrollo de Java lanza la versión 1.17 de JDK, que introduce nuevas características y mejoras significativas en la plataforma Java. La versión 1.17 de JDK se conoce como "Java 17".</p></li>
+                    <p>El equipo de desarrollo de Java lanza la versión 1.17 de JDK, que introduce nuevas características y mejoras significativas en la plataforma Java. La versión 1.17 de JDK se conoce como "Java 17".</p>
                     `,
                 java_sintax: `
                     <h2>Sintaxis y Estructura Básica de Java</h2>
                     <p>La sintaxis de Java es similar a la de otros lenguajes de programación como C y C++. A continuación, se presentan algunos conceptos básicos de la sintaxis y la estructura de un programa Java:</p>
                     <h3>1. Estructura Básica de un Programa Java</h3>
-                    <pre><code class="language-java">public class NombreDeLaClase {`,
+                    <pre><code class="language-java">public class NombreDeLaClase {
+    public static void main(String[] args) {
+        // Aquí va el código principal
+    }
+}</code></pre>
+                    <p>En este ejemplo:</p>
+                    <ul>
+                        <li><code>public class NombreDeLaClase</code>: Define una clase pública llamada "NombreDeLaClase".</li>
+                        <li><code>public static void main(String[] args)</code>: Es el método principal donde comienza la ejecución del programa.</li>
+                    </ul>
+                    <h3>2. Variables</h3>
+                    <p>Las variables se utilizan para almacenar datos. En Java, debes declarar el tipo de dato de la variable antes de usarla:</p>
+                    <pre><code class="language-java">
+int edad = 30; // Variable de tipo entero
+String nombre = "Juan"; // Variable de tipo cadena de texto
+double precio = 99.99; // Variable de tipo decimal
+                    </code></pre>
+                    <h3>3. Tipos de Datos</h3>
+                    <p>Java tiene varios tipos de datos primitivos:</p>
+                    <ul>
+                        <li><code>int</code>: Enteros (ej: 10, -5, 0)</li>
+                        <li><code>double</code>: Decimales (ej: 3.14, -2.5)</li>
+                        <li><code>boolean</code>: Valores lógicos (<code>true</code> o <code>false</code>)</li>
+                        <li><code>char</code>: Caracteres (ej: 'a', 'B', '$')</li>
+                        <li><code>String</code>: Cadenas de texto (ej: "Hola Mundo")</li>
+                    </ul>
+                    <h3>4. Operadores</h3>
+                    <p>Java soporta operadores aritméticos (+, -, *, /), de comparación (==, !=, <, >, <=, >=) y lógicos (&&, ||, !).</p>
+                    <h3>5. Estructuras de Control</h3>
+                    <p>Java tiene estructuras de control como:</p>
+                    <ul>
+                        <li><code>if-else</code>: Para ejecutar código condicionalmente.</li>
+                        <li><code>for</code>: Para bucles.</li>
+                        <li><code>while</code>: Para bucles condicionales.</li>
+                    </ul>
+                    <pre><code class="language-java">
+if (edad >= 18) {
+    System.out.println("Es mayor de edad");
+} else {
+    System.out.println("Es menor de edad");
+}
+                    </code></pre>
+                `,
                 java_paradigm: `
                     <h2>Paradigmas Soportados por Java</h2>
                     <p>Java es un lenguaje de programación versátil que admite varios paradigmas de programación. A continuación, se describen los principales paradigmas soportados por Java:</p>
@@ -163,17 +217,40 @@
                         <li><strong>Herencia:</strong> Permite crear nuevas clases basadas en clases existentes.</li>
                         <li><strong>Polimorfismo:</strong> Permite que una misma operación se aplique a diferentes tipos de objetos.</li>
                         <li><strong>Abstracción:</strong> Oculta los detalles de implementación y muestra solo la funcionalidad esencial.</li>
-                    </ul>`,
+                    </ul>
+                    <h3>2. Programación Imperativa</h3>
+                    <p>Java también soporta la programación imperativa, donde se define una secuencia de pasos para resolver un problema. Esto se logra mediante el uso de estructuras de control como bucles y condicionales.</p>
+                    <h3>3. Programación Funcional</h3>
+                    <p>A partir de Java 8, se introdujeron características de programación funcional, como las expresiones lambda y las interfaces funcionales. Esto permite escribir código más conciso y expresivo.</p>
+                `,
                 java_casos: `
                     <h2>Casos de Uso de Java</h2>
                     <p>Java es un lenguaje de programación versátil y ampliamente utilizado en una variedad de aplicaciones. A continuación, se presentan algunos casos de uso comunes de Java:</p>
                     <h3>1. Desarrollo de Aplicaciones Empresariales</h3>
                     <p>Java es ampliamente utilizado para desarrollar aplicaciones empresariales debido a su robustez, escalabilidad y seguridad. Las aplicaciones empresariales suelen ser sistemas complejos que requieren una gestión eficiente de datos y transacciones.</p>
                     <h3>2. Desarrollo Web</h3>
-                    <p>Java se utiliza en el desarrollo de aplicaciones web mediante tecnologías como JavaServer Pages (JSP), Servlets y frameworks como Spring y JavaServer Faces (JSF). Estas tecnologías permiten crear aplicaciones web dinámicas y escalables.</p>`,    
+                    <p>Java se utiliza en el desarrollo de aplicaciones web mediante tecnologías como JavaServer Pages (JSP), Servlets y frameworks como Spring y JavaServer Faces (JSF). Estas tecnologías permiten crear aplicaciones web dinámicas y escalables.</p>
+                    <h3>3. Desarrollo de Aplicaciones Móviles</h3>
+                    <p>Java es el lenguaje principal para el desarrollo de aplicaciones en la plataforma Android. El Android SDK proporciona herramientas y bibliotecas para crear aplicaciones móviles en Java.</p>
+                    <h3>4. Big Data</h3>
+                    <p>Java se utiliza en el procesamiento de grandes volúmenes de datos mediante tecnologías como Hadoop y Spark. Estas tecnologías permiten analizar y procesar datos de manera eficiente.</p>
+                    <h3>5. Internet de las Cosas (IoT)</h3>
+                    <p>Java se utiliza en el desarrollo de aplicaciones para dispositivos IoT debido a su portabilidad y capacidad para ejecutarse en diferentes plataformas.</p>
+                `,
                 spring_car: `
                     <h2>Caracteristicas de Spring</h2>
-                    `,
+                    <p>Spring es un framework popular para el desarrollo de aplicaciones Java. A continuación, se presentan algunas características clave de Spring:</p>
+                    <h3>1. Inversión de Control (IoC)</h3>
+                    <p>Spring utiliza el principio de IoC para gestionar la creación y el ciclo de vida de los objetos, lo que facilita la gestión de dependencias.</p>
+                    <h3>2. Programación Orientada a Aspectos (AOP)</h3>
+                    <p>Spring permite la programación orientada a aspectos, lo que facilita la separación de preocupaciones y la reutilización de código.</p>
+                    <h3>3. Integración con Otros Frameworks</h3>
+                    <p>Spring se integra fácilmente con otros frameworks y tecnologías, como Hibernate, JPA y JMS.</p>
+                    <h3>4. Soporte para Pruebas Unitarias</h3>
+                    <p>Spring facilita la realización de pruebas unitarias mediante la inyección de dependencias.</p>
+                    <h3>5. Módulo MVC</h3>
+                    <p>Spring MVC es un módulo de Spring que facilita el desarrollo de aplicaciones web basadas en el patrón Modelo-Vista-Controlador (MVC).</p>
+                `,
                 spring_v_d: `
                     <h2>Ventajas y Desventajas de Spring</h2>
                     <p>Spring es un framework popular para el desarrollo de aplicaciones Java. A continuación, se presentan algunas ventajas y desventajas de utilizar Spring:</p>
@@ -183,21 +260,102 @@
                         <li><strong>Programación Orientada a Aspectos (AOP):</strong> Spring permite la programación orientada a aspectos, lo que facilita la separación de preocupaciones y la reutilización de código.</li>
                         <li><strong>Integración con Otros Frameworks:</strong> Spring se integra fácilmente con otros frameworks y tecnologías, como Hibernate, JPA y JMS.</li>
                         <li><strong>Soporte para Pruebas Unitarias:</strong> Spring facilita la realización de pruebas unitarias mediante la inyección de dependencias.</li>
-                    </ul>`,
+                        <li><strong>Módulo MVC:</strong> Spring MVC facilita el desarrollo de aplicaciones web basadas en el patrón Modelo-Vista-Controlador (MVC).</li>
+                    </ul>
+                    <h3>Desventajas:</h3>
+                    <ul>
+                        <li><strong>Curva de Aprendizaje:</strong> Spring puede tener una curva de aprendizaje pronunciada debido a su complejidad y la cantidad de módulos disponibles.</li>
+                        <li><strong>Configuración:</strong> La configuración de Spring puede ser compleja y requiere un buen entendimiento del framework.</li>
+                        <li><strong>Sobrecarga:</strong> En proyectos pequeños, Spring puede introducir una sobrecarga innecesaria.</li>
+                    </ul>
+                `,
                 spring_pop: `
                     <h2>Popularidad y Uso de Spring</h2>
                     <p>Spring es uno de los frameworks más populares para el desarrollo de aplicaciones Java. Su popularidad se debe a su flexibilidad, escalabilidad y facilidad de uso. A continuación, se presentan algunos aspectos destacados sobre la popularidad y el uso de Spring:</p>
                     <h3>1. Comunidad Activa:</h3>
                     <p>Spring cuenta con una comunidad activa de desarrolladores que contribuyen al desarrollo del framework y ofrecen soporte a través de foros y grupos de discusión.</p>
                     <h3>2. Amplia Documentación:</h3>
-                    <p>Spring ofrece una amplia documentación y recursos en línea, lo que facilita el aprendizaje y la adopción del framework.</p>`,
+                    <p>Spring ofrece una amplia documentación y recursos en línea, lo que facilita el aprendizaje y la adopción del framework.</p>
+                    <h3>3. Amplio Uso en la Industria:</h3>
+                    <p>Spring es ampliamente utilizado en la industria para el desarrollo de aplicaciones empresariales, web y de microservicios.</p>
+                    <h3>4. Integración con Spring Boot:</h3>
+                    <p>Spring Boot simplifica el desarrollo de aplicaciones Spring, lo que ha aumentado aún más la popularidad de Spring.</p>
+                `,
                 spring_casos: `
                     <h2>Casos de Uso de Spring</h2>
                     <p>Spring es un framework versátil que se utiliza en una variedad de aplicaciones. A continuación, se presentan algunos casos de uso comunes de Spring:</p>
                     <h3>1. Desarrollo de Aplicaciones Empresariales:</h3>
                     <p>Spring es ampliamente utilizado para desarrollar aplicaciones empresariales debido a su robustez y escalabilidad.</p>
                     <h3>2. Desarrollo Web:</h3>
-                    <p>Spring MVC es un módulo de Spring que facilita el desarrollo de aplicaciones web basadas en el patrón Modelo-Vista-Controlador (MVC).</p>`
+                    <p>Spring MVC es un módulo de Spring que facilita el desarrollo de aplicaciones web basadas en el patrón Modelo-Vista-Controlador (MVC).</p>
+                    <h3>3. Desarrollo de Microservicios:</h3>
+                    <p>Spring Boot y Spring Cloud facilitan el desarrollo de microservicios, que son aplicaciones pequeñas y autónomas que se comunican entre sí.</p>
+                    <h3>4. Integración con Bases de Datos:</h3>
+                    <p>Spring facilita la integración con bases de datos mediante tecnologías como JDBC, JPA y Hibernate.</p>
+                    <h3>5. Desarrollo de Servicios REST:</h3>
+                    <p>Spring facilita el desarrollo de servicios RESTful mediante Spring MVC y Spring Boot.</p>
+                `,
+                springboot_intro: `
+                    <h2>Introducción a Spring Boot</h2>
+                    <p>Spring Boot es un framework de código abierto basado en Java que simplifica el desarrollo de aplicaciones web y microservicios. Se basa en el framework Spring y elimina gran parte de la configuración boilerplate (repetitiva) que se requería en Spring tradicional. Su objetivo principal es facilitar y acelerar el desarrollo de aplicaciones Spring.</p>
+                    <h3>¿Por qué usar Spring Boot?</h3>
+                    <ul>
+                        <li><strong>Configuración automática:</strong> Spring Boot configura automáticamente la mayoría de las dependencias necesarias, reduciendo la necesidad de configuración manual.</li>
+                        <li><strong>Aplicaciones independientes:</strong> Permite crear aplicaciones "ejecutables" (JARs) que contienen todo lo necesario para funcionar, incluyendo el servidor web embebido.</li>
+                        <li><strong>Servidores embebidos:</strong> Incluye servidores web como Tomcat, Jetty o Undertow, lo que facilita el despliegue y la ejecución.</li>
+                        <li><strong>Facilidad de uso:</strong> Simplifica el desarrollo con convenciones sobre configuración, lo que reduce la cantidad de código necesario.</li>
+                        <li><strong>Productividad:</strong> Acelera el desarrollo y el despliegue de aplicaciones.</li>
+                        <li><strong>Ecosistema Spring:</strong> Se integra perfectamente con el amplio ecosistema de Spring (Spring Data, Spring Security, Spring Cloud, etc.).</li>
+                        <li><strong>Microservicios:</strong> Es una excelente opción para la creación de microservicios.</li>
+                    </ul>
+                `,
+                springboot_historia: `
+                    <h2>Historia de Spring Boot</h2>
+                    <p>Spring Boot fue creado por Pivotal Software (ahora parte de VMware). La primera versión estable (1.0.0.RELEASE) se lanzó en abril de 2014. Nació como una respuesta a la complejidad de configurar aplicaciones Spring tradicionales.</p>
+                    <h3>Evolución:</h3>
+                    <p>Desde su lanzamiento, Spring Boot ha experimentado un crecimiento y una adopción masiva. Ha ido incorporando nuevas funcionalidades y mejorando las existentes. Se ha convertido en el estándar de facto para el desarrollo de aplicaciones Spring. La versión actual es la 3.x, que requiere Java 17 como mínimo.</p>
+                    <h3>Motivación:</h3>
+                    <ul>
+                        <li>Simplificar la configuración de aplicaciones Spring.</li>
+                        <li>Reducir el tiempo de desarrollo.</li>
+                        <li>Facilitar el despliegue de aplicaciones.</li>
+                        <li>Promover el uso de microservicios.</li>
+                    </ul>
+                `,
+                springboot_func: `
+                    <h2>Funcionalidades Clave de Spring Boot</h2>
+                    <p>Spring Boot ofrece una serie de funcionalidades que simplifican el desarrollo de aplicaciones. A continuación, se presentan algunas de las más importantes:</p>
+                    <h3>1. Auto-configuración:</h3>
+                    <p>Detecta las dependencias en el classpath y configura automáticamente los beans necesarios. Reduce la necesidad de archivos de configuración XML o anotaciones de configuración.</p>
+                    <h3>2. Starter POMs:</h3>
+                    <p>"Starter POMs" son dependencias que agrupan un conjunto de dependencias relacionadas. Ejemplos: <code>spring-boot-starter-web</code>, <code>spring-boot-starter-data-jpa</code>, <code>spring-boot-starter-security</code>. Simplifican la gestión de dependencias.</p>
+                    <h3>3. Servidores Embebidos:</h3>
+                    <p>Permite ejecutar la aplicación con un servidor web embebido (Tomcat, Jetty, Undertow). Facilita el desarrollo y el despliegue.</p>
+                    <h3>4. Actuator:</h3>
+                    <p>Proporciona endpoints para monitorizar y gestionar la aplicación (health checks, metrics, etc.).</p>
+                    <h3>5. Spring CLI:</h3>
+                    <p>Una interfaz de línea de comandos para crear y ejecutar aplicaciones Spring Boot.</p>
+                    <h3>6. Spring Initializr:</h3>
+                    <p>Una herramienta web para generar proyectos Spring Boot con las dependencias necesarias.</p>
+                    <h3>7. Profiles:</h3>
+                    <p>Permite definir diferentes configuraciones para diferentes entornos (desarrollo, pruebas, producción).</p>
+                    <h3>8. Externalized Configuration:</h3>
+                    <p>Permite configurar la aplicación desde archivos externos (application.properties, application.yml), variables de entorno, etc.</p>
+                    <h3>9. DevTools:</h3>
+                    <p>Herramientas para el desarrollo, como el reinicio automático de la aplicación al detectar cambios.</p>
+                `,
+                springboot_micro: `
+                    <h2>Spring Boot y Microservicios</h2>
+                    <p>Spring Boot es una excelente opción para el desarrollo de microservicios. Su ligereza, facilidad de despliegue y configuración automática lo hacen ideal para este tipo de arquitectura.</p>
+                    <h3>Spring Cloud:</h3>
+                    <p>Spring Cloud es un proyecto que complementa a Spring Boot y proporciona herramientas para la construcción de sistemas distribuidos y microservicios. Incluye funcionalidades como:</p>
+                    <ul>
+                        <li>Service Discovery (Eureka, Consul)</li>
+                        <li>Circuit Breaker (Hystrix, Resilience4j)</li>
+                        <li>API Gateway (Zuul, Spring Cloud Gateway)</li>
+                        <li>Configuración distribuida (Spring Cloud Config)</li>
+                    </ul>
+                `
             };
             document.getElementById("content").innerHTML = content[option];
         }
