@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investigación de Incidentes Éticos en Empresas Tecnológicas</title>
+    <style>
+        body {
+            display: flex;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            height: 100vh;
+        }
+
+        .menu {
+            width: 200px;
+            background: #333;
+            color: white;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .menu button {
+            background: none;
+            border: none;
+            color: white;
+            padding: 10px;
+            text-align: left;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .menu button:hover {
+            background: #555;
+        }
+
+        .content {
+            flex-grow: 1;
+            padding: 40px 20px;
+            overflow-y: auto;
+            /* Esto agrega scroll vertical si es necesario */
+            text-align: center;
+            font-size: 18px;
+            border-left: 2px solid #ddd;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .content div {
+            width: 80%;
+            max-width: 800px;
+            text-align: justify;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        pre code {
+            display: block;
+            background-color: #000000;
+            color: #ffffff;
+            padding: 1em;
+            border-radius: 8px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.95em;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="menu">
+        <button onclick="showContent('empresa')">Empresa Investigada</button>
+        <button onclick="showContent('incidente')">Incidente Ético</button>
+        <button onclick="showContent('tecnicos')">Detalles Técnicos</button>
+        <button onclick="showContent('impacto')">Impacto</button>
+        <button onclick="showContent('consecuencias')">Consecuencias</button>
+        <button onclick="showContent('fuentes')">Fuentes</button>
+    </div>
+    <div class="content">
+        <div id="content">
+            <h2>Selecciona una opción del menú.</h2>
+            <p>Aquí aparecerá el contenido correspondiente.</p>
+        </div>
+    </div>
+
+    <script>
+        function showContent(option) {
+            const content = {
+                empresa: `
+                <img src="img/oracle.png" alt="LogoOracle" width="500px">
+                <h2>Solución: Investigación de Incidentes Éticos en Empresas Tecnológicas</h2>
+
+                <h3>Empresa:</h3>
+                <p>Oracle Corporation</p>
+
+                <h3>Descripción de la empresa:</h3>
+                <p>
+                Oracle es una multinacional estadounidense especializada en el desarrollo de software para gestión empresarial. 
+                Es conocida por su sistema de gestión de bases de datos Oracle Database y por haber adquirido varias tecnologías clave, 
+                como el lenguaje de programación Java (a través de la compra de Sun Microsystems en 2010).
+                </p>
+
+                <h3>Servicios:</h3>
+                <ul>
+                    <li>Sistemas de gestión de bases de datos (Oracle DB)</li>
+                    <li>Servicios de nube (Oracle Cloud)</li>
+                    <li>Soluciones empresariales (ERP, CRM, etc.)</li>
+                    <li>Lenguaje de programación Java (desde 2010)</li>
+                </ul>
+                `,
+                incidente: `
+                <h3>Descripción del Incidente Ético:</h3>
+                <p>
+                En 2010, Oracle demandó a Google por haber utilizado 37 APIs de Java en el sistema operativo Android sin pagar licencias. 
+                Google argumentó que estas APIs eran necesarias para mantener compatibilidad y que su uso constituía "uso justo" (fair use). 
+                Oracle, en cambio, alegó que las APIs estaban protegidas por derechos de autor y debían licenciarse. 
+                El conflicto generó un fuerte debate en la industria sobre si las APIs, como interfaces funcionales, pueden o no estar protegidas por copyright.
+                </p>
+                <img src="img/timeline.png" alt="TimeLine" width="500px">
+                `,
+                tecnicos: `
+                <h2>¿Qué API de Java fue el foco del caso Oracle vs Google?</h2>
+                <p>
+                Oracle demandó a Google por el uso no autorizado de 37 APIs del <strong>Java Standard Edition (Java SE)</strong> en el sistema operativo Android.
+                Estas APIs forman parte del núcleo del lenguaje Java y son esenciales para el desarrollo de aplicaciones.
+                </p>
+
+                <h2>Detalles técnicos</h2>
+                <p>
+                Google copió la <strong>estructura, secuencia y organización (SSO)</strong> de 37 paquetes de Java. Esto incluye los nombres de las clases, métodos e interfaces,
+                pero no el código fuente de implementación. La idea de Google era que los desarrolladores Java pudieran utilizar Android de forma más familiar, 
+                manteniendo la compatibilidad con el lenguaje, pero reimplementando su funcionalidad con su propio código.
+                </p>
+ 
+                <h2>Listado completo de las 37 APIs involucradas</h2>
+                <pre><code class="language-java">
+                java.awt.font
+                java.beans
+                java.io
+                java.lang
+                java.lang.annotation
+                java.lang.ref
+                java.lang.reflect
+                java.math
+                java.net
+                java.nio
+                java.nio.channels
+                java.nio.channels.spi
+                java.nio.charset
+                java.nio.charset.spi
+                java.security
+                java.security.acl
+                java.security.cert
+                java.security.interfaces
+                java.security.spec
+                java.sql
+                java.text
+                java.util
+                java.util.concurrent
+                java.util.concurrent.atomic
+                java.util.concurrent.locks
+                java.util.jar
+                java.util.logging
+                java.util.prefs
+                java.util.regex
+                java.util.zip
+                javax.crypto
+                javax.crypto.interfaces
+                javax.crypto.spec
+                javax.net
+                javax.net.ssl
+                javax.security.auth
+                javax.security.auth.callback
+                </code></pre>
+
+                `
+                ,
+                impacto: `
+                <img src="img/api.jpg" alt="Api" width="500px">
+                
+                <h3>Impacto:</h3>
+                <ul>
+                    <li>Generó incertidumbre legal en la comunidad de desarrolladores sobre el uso de APIs.</li>
+                    <li>Se puso en duda el compromiso de Oracle con la apertura del ecosistema Java.</li>
+                    <li>Afectó la reputación de Oracle por priorizar intereses económicos sobre el acceso abierto a herramientas de desarrollo ampliamente utilizadas.</li>
+                </ul>
+                `,
+                consecuencias: `
+                <img src="img/googlewins.png" alt="GoogleWin" width="500px">
+                <h3>Consecuencias:</h3>
+                <ul>
+                    <li>Tras más de una década de litigios, en 2021 la Corte Suprema de EE.UU. falló a favor de Google, determinando que el uso de las APIs fue "uso justo".</li>
+                    <li>Se estableció un precedente importante a favor del libre uso de APIs en el desarrollo de software.</li>
+                    <li>Oracle recibió críticas por su estrategia agresiva de licenciamiento posterior a la adquisición de Java.</li>
+                </ul>
+                `,
+                fuentes: `
+                <img src="img/oraclevsgoogle.png" alt="OracleVSGoogle" width="500px">
+                <h3>Fuentes:</h3>
+                <ul>
+                <li><a href="https://upperedge.com/oracle/unraveling-the-oracle-vs-google-lawsuit/" target="_blank">https://upperedge.com/oracle/unraveling-the-oracle-vs-google-lawsuit/</a></li>
+                <li><a href="https://www.theippress.com/2021/05/18/case-study-of-google-inc-v-oracle-america-inc-and-the-way-forward/" target="_blank">https://www.theippress.com/2021/05/18/case-study-of-google-inc-v-oracle-america-inc-and-the-way-forward/</a></li>
+                <li><a href="https://www.eff.org/cases/oracle-v-google" target="_blank">https://www.eff.org/cases/oracle-v-google</a></li>
+                <li><a href="https://www.dmca.com/articles/oracle-vs-google-the-java-wars" target="_blank">https://www.dmca.com/articles/oracle-vs-google-the-java-wars</a></li>
+                <li><a href="https://www.scotusblog.com/2021/04/google-wins-copyright-clash-with-oracle-over-computer-code/" target="_blank">https://www.scotusblog.com/2021/04/google-wins-copyright-clash-with-oracle-over-computer-code/</a></li>
+                </ul>    
+                `
+            };
+            document.getElementById("content").innerHTML = content[option];
+        }
+    </script>
+</body>
+
+</html>
