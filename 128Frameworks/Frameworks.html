@@ -102,14 +102,15 @@
         <button onclick="showContent('java_sintax')">Java: Sintaxis y Estructura Básica</button>
         <button onclick="showContent('java_paradigm')">Java: Paradigmas Soportados</button>
         <button onclick="showContent('java_casos')">Java: Casos de Uso</button>
-        <button onclick="showContent('springboot_intro')">Spring Boot: Introducción</button>
-        <button onclick="showContent('springboot_historia')">Spring Boot: Historia</button>
-        <button onclick="showContent('springboot_func')">Spring Boot: Funcionalidades</button>
-        <button onclick="showContent('springboot_micro')">Spring Boot: Microservicios</button>
         <button onclick="showContent('spring_car')">Spring: Caracteristicas</button>
         <button onclick="showContent('spring_v_d')">Spring: Ventajas y Desventajas</button>
         <button onclick="showContent('spring_pop')">Spring: Popularidad y Uso</button>
         <button onclick="showContent('spring_casos')">Spring: Casos de Uso</button>
+        <button onclick="showContent('springboot_intro')">Spring Boot: Introducción</button>
+        <button onclick="showContent('springboot_historia')">Spring Boot: Historia</button>
+        <button onclick="showContent('springboot_func')">Spring Boot: Funcionalidades</button>
+        <button onclick="showContent('springboot_micro')">Spring Boot: Microservicios</button>
+        <button onclick="showContent('springboot_empresas')">Spring Boot: Casos de Uso</button>
     </div>
     <div class="content">
         <div id="content">
@@ -238,6 +239,8 @@ if (edad >= 18) {
                     <p>Java se utiliza en el desarrollo de aplicaciones para dispositivos IoT debido a su portabilidad y capacidad para ejecutarse en diferentes plataformas.</p>
                 `,
                 spring_car: `
+                    
+                    <img src="img/spring.png" alt="spring_logo" width="500px"></br>
                     <h2>Caracteristicas de Spring</h2>
                     <p>Spring es un framework popular para el desarrollo de aplicaciones Java. A continuación, se presentan algunas características clave de Spring:</p>
                     <h3>1. Inversión de Control (IoC)</h3>
@@ -293,9 +296,19 @@ if (edad >= 18) {
                     <h3>4. Integración con Bases de Datos:</h3>
                     <p>Spring facilita la integración con bases de datos mediante tecnologías como JDBC, JPA y Hibernate.</p>
                     <h3>5. Desarrollo de Servicios REST:</h3>
-                    <p>Spring facilita el desarrollo de servicios RESTful mediante Spring MVC y Spring Boot.</p>
-                `,
+                    <p>Spring facilita el desarrollo de servicios RESTful mediante Spring MVC y Spring Boot.</p>`,
+                springboot_empresas:`
+                <h2>Empresas que usan Spring Boot</h2>
+                <img src="img/netflix.png" alt="netflix_logo" width="500px"></br>
+                <img src="img/uber.png" alt="uber_logo" width="500px"></br>
+                <ul>
+                <li><strong>Netflix:</strong> Utiliza Spring Boot para construir una plataforma nativa de la nube y microservicios de alta escala</li>
+                <li><strong>Uber:</strong> Utiliza Spring Boot para servicios basados en Java</li> 
+                </ul>
+                `
+                ,
                 springboot_intro: `
+                    <img src="img/springboot.png" alt="springboot_logo" width="500px"></br>
                     <h2>Introducción a Spring Boot</h2>
                     <p>Spring Boot es un framework de código abierto basado en Java que simplifica el desarrollo de aplicaciones web y microservicios. Se basa en el framework Spring y elimina gran parte de la configuración boilerplate (repetitiva) que se requería en Spring tradicional. Su objetivo principal es facilitar y acelerar el desarrollo de aplicaciones Spring.</p>
                     <h3>¿Por qué usar Spring Boot?</h3>
