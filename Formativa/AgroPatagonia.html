@@ -106,15 +106,21 @@
         function showContent(option) {
             const content = {
                 contexto: `
+                    <img src="img/agropatagonia.jpeg" width="500px">
+                    </br>
                     <h2>Contexto General</h2>
                     <p>AgroPatagonia es una empresa chilena con 15 años de trayectoria en la distribución de productos agropecuarios, con presencia en el sur del país. Comenzó sus operaciones en Osorno, atendiendo a pequeños agricultores mediante pedidos telefónicos.</p>
                     <p>Hace 8 años, en un intento por modernizarse, desarrollaron internamente un sistema digital monolítico que permite registrar pedidos, gestionar inventario, emitir facturas y generar reportes de ventas. Con el tiempo, se añadieron funciones como integración bancaria, control de bodegas y seguimiento de despachos.</p>
                     <p>Actualmente, la empresa opera en tres regiones y ha experimentado un crecimiento considerable. Este crecimiento, junto con la complejidad operativa que implica manejar procesos simultáneos durante las temporadas altas, ha expuesto importantes limitaciones técnicas del sistema.</p>
-                    <p><strong>Introducción al Problema:</strong> La arquitectura monolítica que en su momento fue funcional, hoy se ha convertido en un obstáculo. Las demoras en tareas simples, las dificultades para mantener el sistema y su incapacidad de escalar adecuadamente, especialmente en periodos de alta demanda, han generado inestabilidad en los servicios digitales de la empresa.</p>
-                    <p>Frente a este escenario, surge la necesidad de repensar la arquitectura tecnológica de AgroPatagonia para garantizar la continuidad operativa, el rendimiento y la capacidad de adaptación frente al crecimiento futuro.</p>
+                    
                 `,
                 definicion: `
                     <h2>Definición del Problema</h2>
+                
+                    <p><strong>Introducción al Problema:</strong> La arquitectura monolítica que en su momento fue funcional, hoy se ha convertido en un obstáculo. Las demoras en tareas simples, las dificultades para mantener el sistema y su incapacidad de escalar adecuadamente, especialmente en periodos de alta demanda, han generado inestabilidad en los servicios digitales de la empresa.</p>
+                    <p>Frente a este escenario, surge la necesidad de repensar la arquitectura tecnológica de AgroPatagonia para garantizar la continuidad operativa, el rendimiento y la capacidad de adaptación frente al crecimiento futuro.</p>
+                    
+                    
                     <p>AgroPatagonia cuenta con un sistema monolítico desarrollado hace 8 años, el cual presenta serias limitaciones en la actualidad:</p>
                     <ul>
                         <li>Alta dependencia entre módulos, lo que complica el mantenimiento.</li>
