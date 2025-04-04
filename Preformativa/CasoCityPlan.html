@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caso City Plan</title>
+    <style>
+        body {
+            display: flex;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            height: 100vh;
+        }
+
+        .menu {
+            width: 200px;
+            background: #333;
+            color: white;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .menu button {
+            background: none;
+            border: none;
+            color: white;
+            padding: 10px;
+            text-align: left;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .menu button:hover {
+            background: #555;
+        }
+
+        .content {
+            flex-grow: 1;
+            padding: 40px 20px;
+            overflow-y: auto;
+            /* Esto agrega scroll vertical si es necesario */
+            text-align: center;
+            font-size: 18px;
+            border-left: 2px solid #ddd;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .content div {
+            width: 80%;
+            max-width: 800px;
+            text-align: justify;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="menu">
+        <button onclick="showContent('cityplan')">CityPlan</button>
+        <button onclick="showContent('lectura')">Lectura del Caso</button>
+        <button onclick="showContent('deteccion')">Detección y Propuesta</button>
+        <button onclick="showContent('etico')">Dilema Ético y Solución</button>
+    </div>
+    <div class="content">
+        <div id="content">
+            <h2>Selecciona una opción del menú.</h2>
+            <p>Aquí aparecerá el contenido correspondiente.</p>
+        </div>
+    </div>
+
+    <script>
+        function showContent(option) {
+            const content = {
+                cityplan: `
+                    <h2>City Plan - Gestión urbana y reclamos ciudadanos</h2>
+                    
+                    <h3>Descripción del sistema:</h3>
+                    <p>CityPlan es una plataforma monolítica de gobiernos locales para gestionar reclamos ciudadanos, solicitudes de obras, agenda municipal, pagos de permisos y licencias.</p>
+                    <h3>Problemas actuales:</h3>
+                    <ul>
+                        <li>El sistema prioriza reclamos por "volumen histórico", lo que invisibiliza barrios de menor participación.</li>
+                        <li>Usuarios pueden ver el estado de cualquier reclamo, incluso de otros vecinos.</li>
+                        <li>Todos los datos se procesan en una sola base de datos.</li>
+                    </ul>
+                    <h3>Problemas éticos detectados:</h3>
+                    <ul>
+                        <li>Inequidad territorial digital.</li>
+                        <li>Falta de anonimato en denuncias ciudadanas.</li>
+                        <li>Asignación desigual de recursos por criterios algorítmicos opacos.</li>
+                    </ul>
+                    <h3>Datos técnicos:</h3>
+                    <ul>
+                        <li>Java Spring Boot monolítico.</li>
+                        <li>Sistema legado con base de datos Oracle.</li>
+                        <li>No tiene APIs ni integraciones externas.</li>
+                    </ul>
+                    <h3>Desafíos a resolver:</h3>
+                    <ul>
+                        <li>Crear servicios independientes para reclamos, pagos, agenda y licencias.</li>
+                        <li>Implementar algoritmos de prioridad transparentes.</li>
+                        <li>Diseñar interfaces de acceso con autenticación y autorización robustas.</li>
+                    </ul>
+                    `,
+                lectura: `
+                    <h2>Parte 1: Lectura del caso</h3>
+
+                    <h3>¿Qué hace este sistema?</h4>
+                    <p>CityPlan es una plataforma digital utilizada por gobiernos locales para la gestión de reclamos ciudadanos, solicitudes de obras, administración de la agenda municipal y pagos de permisos y licencias.</p>
+
+                    <h3>¿Qué problema técnico se presentó?</h4>
+                    <ul>
+                        <li>El sistema prioriza reclamos por “volumen histórico”, lo que genera un sesgo hacia zonas con más participación previa.</li>
+                        <li>No hay anonimato: los usuarios pueden ver reclamos de otros vecinos.</li>
+                        <li>Todos los procesos se ejecutan en una única base de datos.</li>
+                        <li>No hay APIs ni integraciones externas.</li>
+                    </ul>
+
+                    <h3>¿Qué error ético o social ocurrió?</h4>
+                    <ul>
+                        <li>Inequidad territorial digital.</li>
+                        <li>Falta de anonimato en las denuncias ciudadanas.</li>
+                        <li>Asignación desigual de recursos por criterios algorítmicos opacos.</li>
+                    </ul>
+                    `,
+                deteccion: `
+                    <h2>Parte 2: Detección y propuesta</h3>
+
+                    <h3>1. Principal error de arquitectura o diseño</h4>
+                    <p>El sistema fue desarrollado como un monolito rígido, lo que impide escalar, mantener y mejorar componentes sin afectar todo el sistema.</p>
+
+                    <h3>2. Mejora usando microservicios</h4>
+                    <p>Propuesta de división en tres módulos:</p>
+                    <ul>
+                        <li><strong>Microservicio de Gestión de Reclamos:</strong> Algoritmo más justo, reclamos anónimos, visibilidad limitada.</li>
+                        <li><strong>Microservicio de Pagos y Licencias:</strong> Seguridad reforzada, cifrado, integración con pasarelas de pago.</li>
+                        <li><strong>Microservicio de Agenda Municipal:</strong> Acceso por niveles, separación entre eventos públicos y privados.</li>
+                    </ul>
+
+                    <h3>3. Herramienta de trabajo colaborativo utilizada</h4>
+                    <p>Se utilizó <strong>GitHub</strong> para organizar tareas. Columnas creadas:</p>
+                    <ul>
+                        <li>Análisis del problema</li>
+                        <li>División en microservicios</li>
+                        <li>Solución ética</li>
+                        <li>Tareas técnicas</li>
+                        <li>Revisión final</li>
+                    </ul>
+                    </br>
+                    <img src="img/backlog.png" alt="backlog" style="width:1200px; border-radius: 10px; margin-bottom: 10px;">
+
+                    <h3>Propuesta técnica simple</h4>
+                    <p>Se plantea reescribir la arquitectura con microservicios independientes, autenticación segura (OAuth2), API Gateway y sistema de auditoría de decisiones automáticas.</p>
+                    
+                    <h3>Diagrama de Arquitectura de Microservicios</h4>
+                    </br>
+                    <img src="img/diagrama.png" alt="diagrama" style="width:1000px; border-radius: 10px; margin-bottom: 10px;">`,
+                etico: `
+                    <h2>Parte 3: Dilema ético y solución</h3>
+
+                    <h3>¿Qué error ético o social se cometió?</h4>
+                    <ul>
+                        <li>Violación del principio de equidad.</li>
+                        <li>Falta de privacidad en los reclamos.</li>
+                        <li>Algoritmo sin transparencia ni control ciudadano.</li>
+                    </ul>
+
+                    <h3>¿Cómo evitaríamos ese error?</h4>
+                    <ul>
+                        <li>Diseño de algoritmo transparente y auditable.</li>
+                        <li>Opción de reclamo anónimo con cifrado.</li>
+                        <li>Inclusión de criterios sociales para distribución justa de recursos.</li>
+                    </ul>
+                    `
+            };
+            document.getElementById("content").innerHTML = content[option];
+        }
+    </script>
+</body>
+
+</html>
