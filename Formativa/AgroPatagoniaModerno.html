@@ -135,6 +135,12 @@
         <span class="lucide">&#xea73;</span> Herramientas
       </button>
       <button
+      onclick="showContent('implementacion')"
+      class="w-full text-left px-4 py-2.5 rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary transition duration-150 ease-in-out flex items-center"
+    >
+      <span class="lucide">&#xe93c;</span> Implementación
+    </button>
+      <button
         onclick="showContent('planificacion')"
         class="w-full text-left px-4 py-2.5 rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary transition duration-150 ease-in-out flex items-center"
       >
@@ -189,6 +195,8 @@
             `,
 
         definicion: `
+                <img src="img/pantallaazul.png" width="750px">
+                </br>
                 <h2>Definición del Problema</h2>
                 <p><strong>Introducción al Problema:</strong> La arquitectura monolítica que en su momento fue funcional, hoy se ha convertido en un obstáculo. Las demoras en tareas simples, las dificultades para mantener el sistema y su incapacidad de escalar adecuadamente, especialmente en periodos de alta demanda, han generado inestabilidad en los servicios digitales de la empresa.</p>
                 <p>Frente a este escenario, surge la necesidad de repensar la arquitectura tecnológica de AgroPatagonia para garantizar la continuidad operativa, el rendimiento y la capacidad de adaptación frente al crecimiento futuro.</p>
@@ -212,6 +220,8 @@
             `,
 
         estrategia: `
+                <img src="img/microservices.jpg" width="500px">
+                </br>
                 <h2>Estrategia de Microservicios Propuesta</h2>
                 <p>Para superar las limitaciones del monolito, se propone migrar a una arquitectura basada en microservicios. Esta estrategia consiste en descomponer la aplicación en un conjunto de servicios más pequeños, independientes y especializados que se comunican entre sí a través de APIs bien definidas (generalmente REST) y, en algunos casos, mediante mensajería asíncrona.</p>
                 <p><strong>Ventajas Clave:</strong></p>
@@ -253,21 +263,131 @@
             `,
 
         herramientas: `
-                <h2>Herramientas y Tecnologías Propuestas</h2>
-                <p>Para implementar la arquitectura de microservicios, se sugiere el siguiente stack tecnológico:</p>
-                <ul class="list-none space-y-3">
-                    <li class="flex items-start"><span class="lucide text-primary mt-1">&#xe9f2;</span> <div><strong>Framework Backend:</strong> Spring Boot (Java) - Robusto, ecosistema maduro, ideal para microservicios.</div></li>
-                    <li class="flex items-start"><span class="lucide text-primary mt-1">&#xe981;</span> <div><strong>Contenerización:</strong> Docker - Estandariza el entorno de desarrollo y despliegue.</div></li>
-                    <li class="flex items-start"><span class="lucide text-primary mt-1">&#xea00;</span> <div><strong>Orquestación:</strong> Kubernetes (K8s) - Gestiona el despliegue, escalado y operación de contenedores Docker a escala.</div></li>
-                    <li class="flex items-start"><span class="lucide text-primary mt-1">&#xe9a0;</span> <div><strong>API Gateway:</strong> Spring Cloud Gateway o NGINX - Punto único de entrada, enrutamiento, seguridad.</div></li>
-                    <li class="flex items-start"><span class="lucide text-primary mt-1">&#xe97a;</span> <div><strong>Bases de Datos:</strong> PostgreSQL (Relacional, para datos transaccionales como pedidos, facturas) y MongoDB (NoSQL, opcional para catálogos, logs, o datos menos estructurados). Se elige por servicio.</div></li>
-                    <li class="flex items-start"><span class="lucide text-primary mt-1">&#xe924;</span> <div><strong>Mensajería Asíncrona:</strong> Kafka o RabbitMQ - Para comunicación basada en eventos entre microservicios, desacoplamiento.</div></li>
-                    <li class="flex items-start"><span class="lucide text-primary mt-1">&#xe9c1;</span> <div><strong>Autenticación/Autorización:</strong> OAuth 2.0 / OpenID Connect (implementado con Keycloak o similar) - Estándares para seguridad.</div></li>
-                    <li class="flex items-start"><span class="lucide text-primary mt-1">&#xe9f6;</span> <div><strong>CI/CD (Integración/Despliegue Continuo):</strong> GitHub Actions o Jenkins - Automatización de pruebas y despliegues.</div></li>
-                    <li class="flex items-start"><span class="lucide text-primary mt-1">&#xe90e;</span> <div><strong>Monitoreo y Observabilidad:</strong> Prometheus + Grafana + Loki/Tempo (Stack LGTM) o ELK Stack - Para recolectar métricas, logs y trazas, esencial en microservicios.</div></li>
+                <h2>Herramientas</h2>
+                <p>Este modelo propone un conjunto de herramientas robusto y con aplicabilidad real:</p>
+
+                <ul style="list-style: none; padding: 0;">
+                    <li style="display: flex; align-items: center; margin-bottom: 20px;">
+                        <img src="img/springboot.png" width="150px" style="margin-right: 15px;">
+                        <div>
+                            <strong>Spring Boot (Backend):</strong><br>
+                            Framework en Java que permite crear servicios web rápidamente. Ideal para desarrollar los distintos módulos como pedidos, inventario y facturación.
+                        </div>
+                    </li>
+
+                    <li style="display: flex; align-items: center; margin-bottom: 20px;">
+                        <img src="img/docker.svg" width="150px" style="margin-right: 15px;">
+                        <div>
+                            <strong>Docker (Contenedores):</strong><br>
+                            Permite empacar cada aplicación para que funcione igual en cualquier computadora, sin problemas de dependencias.
+                        </div>
+                    </li>
+
+                    <li style="display: flex; align-items: center; margin-bottom: 20px;">
+                        <img src="img/oracle.jpg" width="150px" style="margin-right: 15px;">
+                        <div>
+                            <strong>Oracle SQL (Base de Datos):</strong><br>
+                            Base de datos relacional muy usada en el mundo empresarial. Ideal para manejar información estructurada como productos, usuarios y transacciones.
+                        </div>
+                    </li>
+
+                    <li style="display: flex; align-items: center; margin-bottom: 20px;">
+                        <img src="img/rabbitmq.svg" width="150px" style="margin-right: 15px;">
+                        <div>
+                            <strong>RabbitMQ (Mensajería Asíncrona):</strong><br>
+                            Ayuda a que los servicios se comuniquen sin depender directamente unos de otros. Por ejemplo, un servicio puede dejar un mensaje para que otro lo procese cuando esté listo.
+                        </div>
+                    </li>
+
+                    <li style="display: flex; align-items: center; margin-bottom: 20px;">
+                        <img src="img/jwt.png" width="150px" style="margin-right: 15px;">
+                        <div>
+                            <strong>JWT (Seguridad):</strong><br>
+                            Método simple para autenticar usuarios mediante tokens. Muy útil para controlar el acceso sin necesidad de sistemas complejos.
+                        </div>
+                    </li>
+
+                    <li style="display: flex; align-items: center; margin-bottom: 20px;">
+                        <img src="img/springcloud.png" width="150px" style="margin-right: 15px;">
+                        <div>
+                            <strong>Spring Cloud Gateway (API Gateway):</strong><br>
+                            Permite centralizar todas las solicitudes del sistema y redirigirlas al microservicio correcto, mejorando el control y seguridad.
+                        </div>
+                    </li>
+
+                    <li style="display: flex; align-items: center; margin-bottom: 20px;">
+                        <img src="img/githubactions.png" width="150px" style="margin-right: 15px;">
+                        <div>
+                            <strong>GitHub Actions (Automatización CI/CD):</strong><br>
+                            Automatiza tareas como pruebas, construcción y despliegue del código, cada vez que se hace un cambio en el repositorio.
+                        </div>
+                    </li>
                 </ul>
             `,
+            implementacion: `
+                <h2>Relación entre Microservicios y Herramientas</h2>
+                <p>Los siguientes microservicios propuestos pueden ser implementados completamente utilizando las herramientas seleccionadas:</p>
 
+                <table border="1" cellpadding="8" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Microservicio</th>
+                            <th>Herramientas Utilizadas</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Pedidos</td>
+                            <td>Spring Boot, Oracle SQL, RabbitMQ</td>
+                        </tr>
+                        <tr>
+                            <td>Inventario</td>
+                            <td>Spring Boot, Oracle SQL</td>
+                        </tr>
+                        <tr>
+                            <td>Facturación</td>
+                            <td>Spring Boot, Oracle SQL, RabbitMQ</td>
+                        </tr>
+                        <tr>
+                            <td>Despachos</td>
+                            <td>Spring Boot, Oracle SQL, RabbitMQ</td>
+                        </tr>
+                        <tr>
+                            <td>Usuarios y Autenticación</td>
+                            <td>Spring Boot, JWT</td>
+                        </tr>
+                        <tr>
+                            <td>Reportes</td>
+                            <td>Spring Boot, Oracle SQL</td>
+                        </tr>
+                        <tr>
+                            <td>Integración Bancaria</td>
+                            <td>Spring Boot, RabbitMQ</td>
+                        </tr>
+                    </tbody>
+                </table>
+                </br>
+                <h3>Comunicación entre Servicios</h3>
+                <p>
+                    Los microservicios se comunican de dos formas:
+                </p>
+                <ul>
+                    <li><strong>HTTP:</strong> Usando peticiones REST a través de <em>Spring Cloud Gateway</em>, que actúa como puerta de entrada central.</li>
+                    <li><strong>Mensajería Asíncrona:</strong> Usando <em>RabbitMQ</em> para enviar eventos entre servicios, sin necesidad de esperar respuestas directas.</li>
+                </ul>
+                </br>
+                <h3>Contenerización y Automatización</h3>
+                <ul>
+                    <li><strong>Docker:</strong> Cada microservicio se ejecuta dentro de su propio contenedor, asegurando independencia y portabilidad.</li>
+                    <li><strong>GitHub Actions (opcional):</strong> Permite automatizar procesos como pruebas, construcción de imágenes Docker y despliegue del sistema.</li>
+                </ul>
+                </br>
+                <h3>Seguridad con JWT</h3>
+                <p>
+                    El microservicio de autenticación usa <strong>JWT (JSON Web Tokens)</strong> para identificar a los usuarios. Los tokens se envían en cada solicitud para validar permisos y acceso, protegiendo así los endpoints del sistema.
+                </p>
+
+                `,
         planificacion: `
                 <h2>Planificación Propuesta (6 Semanas)</h2>
                 <p>Se propone una planificación ágil basada en sprints semanales, utilizando herramientas colaborativas como Trello o Miro para visualizar el progreso.</p>
@@ -372,28 +492,50 @@
             
         referencias: `
                 <h2>Referencias Bibliográficas</h2>
-                <p>Material consultado y recomendado para profundizar en los conceptos de arquitectura de software y microservicios:</p>
-                <ul class="list-disc list-inside space-y-1">
-                    <li>Bass, L., Clements, P., & Kazman, R. (2021). <em>Software Architecture in Practice</em> (4th ed.). Addison-Wesley Professional.</li>
-                    <li>Newman, S. (2019). <em>Monolith to Microservices: Evolutionary Patterns to Transform Your Monolith</em>. O'Reilly Media.</li>
-                     <li>Newman, S. (2021). <em>Building Microservices: Designing Fine-Grained Systems</em> (2nd ed.). O'Reilly Media.</li>
-                    <li>Richards, M., & Ford, N. (2020). <em>Fundamentals of Software Architecture: An Engineering Approach</em>. O'Reilly Media.</li>
-                    <li>Pautasso, C., Zimmermann, O., & Leymann, F. (2017). Microservices in Practice. <em>IEEE Software, 34</em>(1), 97-104. <a href="https://doi.org/10.1109/MS.2017.22" target="_blank" class="text-primary hover:underline">DOI: 10.1109/MS.2017.22</a></li>
+                <ul>
+                    <li>
+                        Spring Boot – 
+                        <a href="https://spring.io/projects/spring-boot" target="_blank">
+                            https://spring.io/projects/spring-boot
+                        </a>
+                    </li>
+                    <li>
+                        Docker – 
+                        <a href="https://www.docker.com/" target="_blank">
+                            https://www.docker.com/
+                        </a>
+                    </li>
+                    <li>
+                        Oracle SQL – 
+                        <a href="https://www.oracle.com/database/" target="_blank">
+                            https://www.oracle.com/database/
+                        </a>
+                    </li>
+                    <li>
+                        RabbitMQ – 
+                        <a href="https://www.rabbitmq.com/" target="_blank">
+                            https://www.rabbitmq.com/
+                        </a>
+                    </li>
+                    <li>
+                        JWT (JSON Web Tokens) – 
+                        <a href="https://jwt.io/" target="_blank">
+                            https://jwt.io/
+                        </a>
+                    </li>
+                    <li>
+                        Spring Cloud Gateway – 
+                        <a href="https://spring.io/projects/spring-cloud-gateway" target="_blank">
+                            https://spring.io/projects/spring-cloud-gateway
+                        </a>
+                    </li>
+                    <li>
+                        GitHub Actions – 
+                        <a href="https://docs.github.com/actions" target="_blank">
+                            https://docs.github.com/actions
+                        </a>
+                    </li>
                 </ul>
-                 <h3 class="mt-6">Herramientas y Tecnologías (Enlaces Oficiales):</h3>
-                 <ul class="list-disc list-inside space-y-1">
-                    <li>Spring Boot – <a href="https://spring.io/projects/spring-boot" target="_blank" class="text-primary hover:underline">https://spring.io/projects/spring-boot</a></li>
-                    <li>Docker – <a href="https://docs.docker.com/" target="_blank" class="text-primary hover:underline">https://docs.docker.com/</a></li>
-                    <li>Kubernetes – <a href="https://kubernetes.io/" target="_blank" class="text-primary hover:underline">https://kubernetes.io/</a></li>
-                    <li>Kafka – <a href="https://kafka.apache.org/" target="_blank" class="text-primary hover:underline">https://kafka.apache.org/</a></li>
-                    <li>RabbitMQ – <a href="https://www.rabbitmq.com/" target="_blank" class="text-primary hover:underline">https://www.rabbitmq.com/</a></li>
-                    <li>PostgreSQL – <a href="https://www.postgresql.org/" target="_blank" class="text-primary hover:underline">https://www.postgresql.org/</a></li>
-                    <li>MongoDB – <a href="https://www.mongodb.com/" target="_blank" class="text-primary hover:underline">https://www.mongodb.com/</a></li>
-                    <li>Prometheus – <a href="https://prometheus.io/" target="_blank" class="text-primary hover:underline">https://prometheus.io/</a></li>
-                    <li>Grafana – <a href="https://grafana.com/" target="_blank" class="text-primary hover:underline">https://grafana.com/</a></li>
-                    <li>Trello – <a href="https://trello.com/" target="_blank" class="text-primary hover:underline">https://trello.com/</a></li>
-                    <li>Miro – <a href="https://miro.com/" target="_blank" class="text-primary hover:underline">https://miro.com/</a></li>
-                 </ul>
             `,
       };
 
