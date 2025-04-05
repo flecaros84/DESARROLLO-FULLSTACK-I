@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Caso Agro Patagonia - Informe Corregido</title>
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <style>
+      @font-face {
+        font-family: "LucideIcons";
+        src: url(https://cdn.jsdelivr.net/npm/lucide-static@latest/font/Lucide.ttf)
+          format("truetype");
+      }
+      .lucide {
+        font-family: "LucideIcons";
+        font-size: 1.1em; /* Adjust size */
+        line-height: 1;
+        vertical-align: -0.1em; /* Align better with text */
+        margin-right: 0.3em; /* Space between icon and text */
+        display: inline-block; /* Ensure proper alignment */
+      }
+      /* Custom styles for Mermaid diagrams */
+      .mermaid svg {
+        max-width: 100%;
+        height: auto;
+      }
+      /* Style for nodes within Mermaid for better icon display */
+      .mermaid .label {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column; /* Stack icon and text */
+        text-align: center;
+      }
+      .mermaid .label .lucide {
+        font-size: 1.5em; /* Larger icon in diagram */
+        margin-right: 0; /* No right margin when stacked */
+        margin-bottom: 0.2em; /* Space below icon */
+      }
+    </style>
+    <script>
+      // Initialize Mermaid
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: "base", // Use 'base' or 'default' theme for better compatibility sometimes
+        themeVariables: {
+          primaryColor: "#dcfce7", // Light green background
+          primaryTextColor: "#065f46", // Dark green text
+          primaryBorderColor: "#16a34a", // Green border
+          lineColor: "#6b7280", // Grey lines
+          secondaryColor: "#fef3c7", // Light yellow for secondary
+          tertiaryColor: "#e0f2fe", // Light blue for tertiary
+        },
+      });
+
+      // Tailwind configuration (optional, for customization)
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              // Using Inter font as default sans-serif
+              sans: ["Inter", "sans-serif"],
+            },
+            colors: {
+              primary: {
+                light: "#6ee7b7", // Emerald 300
+                DEFAULT: "#10b981", // Emerald 500
+                dark: "#047857", // Emerald 700
+              },
+              secondary: "#f59e0b", // Amber 500
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body class="flex h-screen bg-gray-100 font-sans">
+    <div
+      class="w-64 bg-gray-800 text-white p-5 flex flex-col space-y-2 shadow-lg flex-shrink-0"
+    >
+      <h1 class="text-2xl font-bold mb-6 text-primary-light flex items-center">
+        <span class="lucide" style="font-size: 1.5rem; margin-right: 0.75rem"
+          >&#xea1f;</span
+        >
+        AgroPatagonia
+      </h1>
+      <button
+        onclick="showContent('contexto')"
+        class="w-full text-left px-4 py-2.5 rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary transition duration-150 ease-in-out flex items-center"
+      >
+        <span class="lucide">&#xe917;</span> Contexto
+      </button>
+      <button
+        onclick="showContent('definicion')"
+        class="w-full text-left px-4 py-2.5 rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary transition duration-150 ease-in-out flex items-center"
+      >
+        <span class="lucide">&#xea64;</span> Definición Problema
+      </button>
+      <button
+        onclick="showContent('arquitectura_actual')"
+        class="w-full text-left px-4 py-2.5 rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary transition duration-150 ease-in-out flex items-center"
+      >
+        <span class="lucide">&#xe97d;</span> Arq. Actual (Monolito)
+      </button>
+      <button
+        onclick="showContent('estrategia')"
+        class="w-full text-left px-4 py-2.5 rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary transition duration-150 ease-in-out flex items-center"
+      >
+        <span class="lucide">&#xe9ee;</span> Estrategia Microservicios
+      </button>
+      <button
+        onclick="showContent('arquitectura_propuesta')"
+        class="w-full text-left px-4 py-2.5 rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary transition duration-150 ease-in-out flex items-center"
+      >
+        <span class="lucide">&#xea08;</span> Arq. Propuesta (Microserv.)
+      </button>
+      <button
+        onclick="showContent('casos_uso')"
+        class="w-full text-left px-4 py-2.5 rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary transition duration-150 ease-in-out flex items-center"
+      >
+        <span class="lucide">&#xea6d;</span> Casos de Uso
+      </button>
+      <button
+        onclick="showContent('herramientas')"
+        class="w-full text-left px-4 py-2.5 rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary transition duration-150 ease-in-out flex items-center"
+      >
+        <span class="lucide">&#xea73;</span> Herramientas
+      </button>
+      <button
+        onclick="showContent('planificacion')"
+        class="w-full text-left px-4 py-2.5 rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary transition duration-150 ease-in-out flex items-center"
+      >
+        <span class="lucide">&#xe93c;</span> Planificación
+      </button>
+      <button
+        onclick="showContent('etico')"
+        class="w-full text-left px-4 py-2.5 rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary transition duration-150 ease-in-out flex items-center"
+      >
+        <span class="lucide">&#xea01;</span> Enfoque Ético
+      </button>
+      <button
+        onclick="showContent('referencias')"
+        class="w-full text-left px-4 py-2.5 rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary transition duration-150 ease-in-out flex items-center"
+      >
+        <span class="lucide">&#xe914;</span> Referencias
+      </button>
+    </div>
+
+    <div class="flex-grow p-10 overflow-y-auto bg-white">
+      <div id="content-area" class="prose max-w-none prose-lg">
+        <div
+          class="bg-gradient-to-r from-primary-light to-emerald-400 p-8 rounded-xl shadow-md text-center text-white not-prose"
+        >
+          <img
+            src="img/Logo Inicio.png"
+            alt="AgroPatagonia Logo"
+            class="block mx-auto mb-4 w-24 h-24"
+          />
+          <h2 class="text-3xl font-bold mb-2 text-white">
+            Bienvenido al Informe de AgroPatagonia
+          </h2>
+          <p class="text-xl text-emerald-50">
+            Selecciona una opción del menú de la izquierda para ver el
+            contenido.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Content data, including Mermaid diagrams
+      const contentData = {
+        contexto: `
+                <div class="text-center mb-8">
+                  <img src="img/agropatagonia.jpeg" width="500px">
+                </div>
+                <h2>Contexto General</h2>
+                <p>AgroPatagonia es una empresa chilena con 15 años de trayectoria en la distribución de productos agropecuarios, con presencia en el sur del país. Comenzó sus operaciones en Osorno, atendiendo a pequeños agricultores mediante pedidos telefónicos.</p>
+                <p>Hace 8 años, en un intento por modernizarse, desarrollaron internamente un sistema digital monolítico que permite registrar pedidos, gestionar inventario, emitir facturas y generar reportes de ventas. Con el tiempo, se añadieron funciones como integración bancaria, control de bodegas y seguimiento de despachos.</p>
+                <p>Actualmente, la empresa opera en tres regiones y ha experimentado un crecimiento considerable. Este crecimiento, junto con la complejidad operativa que implica manejar procesos simultáneos durante las temporadas altas, ha expuesto importantes limitaciones técnicas del sistema.</p>
+            `,
+
+        definicion: `
+                <h2>Definición del Problema</h2>
+                <p><strong>Introducción al Problema:</strong> La arquitectura monolítica que en su momento fue funcional, hoy se ha convertido en un obstáculo. Las demoras en tareas simples, las dificultades para mantener el sistema y su incapacidad de escalar adecuadamente, especialmente en periodos de alta demanda, han generado inestabilidad en los servicios digitales de la empresa.</p>
+                <p>Frente a este escenario, surge la necesidad de repensar la arquitectura tecnológica de AgroPatagonia para garantizar la continuidad operativa, el rendimiento y la capacidad de adaptación frente al crecimiento futuro.</p>
+                <p>El sistema monolítico desarrollado hace 8 años presenta serias limitaciones:</p>
+                <ul class="list-disc list-inside space-y-1">
+                    <li><strong class="font-semibold text-red-600">Alta dependencia entre módulos:</strong> Complica el mantenimiento y la evolución. Un cambio en un módulo puede afectar a otros inesperadamente.</li>
+                    <li><strong class="font-semibold text-red-600">Lentitud operativa:</strong> Operaciones simples como la emisión de facturas se ejecutan con lentitud, afectando la productividad.</li>
+                    <li><strong class="font-semibold text-red-600">Problemas de escalabilidad:</strong> Durante temporadas de alta demanda (siembra, cosecha), el sistema colapsa debido a la carga, impidiendo operaciones críticas.</li>
+                    <li><strong class="font-semibold text-red-600">Rigidez ante cambios:</strong> Cualquier modificación (ajustar precios, rutas de despacho) requiere revisar y probar múltiples módulos interconectados, ralentizando la adaptación al negocio.</li>
+                </ul>
+                <p>Estas fallas limitan el crecimiento, la eficiencia operativa y la capacidad de adaptación tecnológica de la empresa, poniendo en riesgo su competitividad.</p>
+            `,
+
+        arquitectura_actual: `
+                <h2>Arquitectura Actual (Monolito)</h2>
+                <p>El sistema existente opera como una aplicación monolítica, donde todas las funcionalidades están acopladas en una única base de código y comparten una base de datos central.</p>
+
+                <img src="img/Diagrama Sistema Monolito.png">
+
+                <p class="mt-4 text-sm text-gray-600"><strong class="font-semibold">Explicación:</strong> Este diagrama muestra la estructura monolítica actual. Una única interfaz de usuario interactúa con la aplicación principal que contiene todos los módulos (Pedidos, Inventario, etc.) fuertemente acoplados (líneas rojas discontinuas). Toda la aplicación accede a una única base de datos centralizada. Esta arquitectura dificulta las modificaciones, el escalado y aumenta el riesgo de fallos generalizados.</p>
+            `,
+
+        estrategia: `
+                <h2>Estrategia de Microservicios Propuesta</h2>
+                <p>Para superar las limitaciones del monolito, se propone migrar a una arquitectura basada en microservicios. Esta estrategia consiste en descomponer la aplicación en un conjunto de servicios más pequeños, independientes y especializados que se comunican entre sí a través de APIs bien definidas (generalmente REST) y, en algunos casos, mediante mensajería asíncrona.</p>
+                <p><strong>Ventajas Clave:</strong></p>
+                <ul class="list-disc list-inside space-y-1">
+                    <li><strong class="font-semibold text-green-600">Escalabilidad Independiente:</strong> Cada microservicio puede escalarse horizontalmente según su carga específica, optimizando el uso de recursos. Por ejemplo, el servicio de Pedidos puede escalarse más durante temporada alta sin afectar a Facturación.</li>
+                    <li><strong class="font-semibold text-green-600">Mantenimiento y Despliegue Ágil:</strong> Los cambios o correcciones en un servicio no requieren redesplegar toda la aplicación. Equipos pequeños pueden trabajar en paralelo en diferentes servicios.</li>
+                    <li><strong class="font-semibold text-green-600">Resiliencia y Tolerancia a Fallos:</strong> Si un microservicio falla, no necesariamente detiene todo el sistema. Los otros servicios pueden seguir funcionando (con degradación controlada si hay dependencias).</li>
+                    <li><strong class="font-semibold text-green-600">Flexibilidad Tecnológica:</strong> Cada microservicio puede usar la tecnología (lenguaje, base de datos) más adecuada para su función específica.</li>
+                </ul>
+                <p><strong>Microservicios Propuestos:</strong></p>
+                <p>La descomposición inicial se basa en las capacidades de negocio identificadas:</p>
+                <ul class="list-disc list-inside space-y-1 grid grid-cols-1 md:grid-cols-2 gap-x-4">
+                    <li><span class="lucide text-primary">&#xe9f0;</span> <strong>Pedidos:</strong> Gestiona la creación y seguimiento de pedidos.</li>
+                    <li><span class="lucide text-primary">&#xe9b3;</span> <strong>Inventario:</strong> Controla el stock de productos.</li>
+                    <li><span class="lucide text-primary">&#xe9e0;</span> <strong>Facturación:</strong> Genera y gestiona facturas.</li>
+                    <li><span class="lucide text-primary">&#xea66;</span> <strong>Despachos:</strong> Coordina la logística de entrega.</li>
+                    <li><span class="lucide text-primary">&#xea6d;</span> <strong>Usuarios y Autenticación:</strong> Maneja el registro, login y permisos.</li>
+                    <li><span class="lucide text-primary">&#xe910;</span> <strong>Reportes:</strong> Agrega datos y genera informes (podría usar CQRS o data warehouse).</li>
+                    <li><span class="lucide text-primary">&#xe90f;</span> <strong>Integración Bancaria:</strong> Procesa pagos y conciliaciones.</li>
+                </ul>
+                 <p class="mt-4">Todos los servicios serán expuestos y gestionados a través de un <strong>API Gateway</strong>, que actúa como punto único de entrada para los clientes (web, móvil), simplificando la comunicación y añadiendo capas de seguridad y gestión.</p>
+            `,
+
+        arquitectura_propuesta: `
+                <h2>Arquitectura Propuesta (Microservicios)</h2>
+                <p>La nueva arquitectura descompone el sistema en servicios independientes, cada uno con su propia base de datos, comunicándose a través de un API Gateway y un Bus de Eventos.</p>
+                
+                <img src="img/Arquitectura Software MicroServicios.png">
+            
+                 <p class="mt-4 text-sm text-gray-600"><strong class="font-semibold">Explicación:</strong> Este diagrama visualiza la arquitectura de microservicios propuesta. Los Clientes (Web/Móvil) acceden al sistema a través de un API Gateway. Este dirige las peticiones a los microservicios correspondientes (Pedidos, Inventario, etc.), cada uno con su base de datos independiente. Los servicios pueden comunicarse entre sí de forma asíncrona (líneas rosas discontinuas) publicando y suscribiéndose a eventos en un Bus de Eventos, lo que mejora el desacoplamiento y la resiliencia.</p>
+            `,
+
+        casos_uso: `
+                <h2>Diagrama de Casos de Uso</h2>
+                <p>Define las interacciones clave entre los usuarios (actores) y las funcionalidades principales (casos de uso) del sistema propuesto.</p>
+
+                <img src="img/Casos de Uso.png">
+                 <p class="mt-4 text-sm text-gray-600"><strong class="font-semibold">Explicación:</strong> Este diagrama muestra quién interactúa con el sistema y qué puede hacer. Los 'Actores' (Cliente, Empleado, Administrador, Sistema Bancario) están fuera del sistema. Los 'Casos de Uso' (óvalos como 'Registrar Pedido', 'Gestionar Inventario') representan las funcionalidades principales dentro del sistema. Las líneas indican qué actor realiza qué caso de uso. Las relaciones 'include' (discontinuas) muestran dependencias (ej: emitir factura incluye procesar pago).</p>
+            `,
+
+        herramientas: `
+                <h2>Herramientas y Tecnologías Propuestas</h2>
+                <p>Para implementar la arquitectura de microservicios, se sugiere el siguiente stack tecnológico:</p>
+                <ul class="list-none space-y-3">
+                    <li class="flex items-start"><span class="lucide text-primary mt-1">&#xe9f2;</span> <div><strong>Framework Backend:</strong> Spring Boot (Java) - Robusto, ecosistema maduro, ideal para microservicios.</div></li>
+                    <li class="flex items-start"><span class="lucide text-primary mt-1">&#xe981;</span> <div><strong>Contenerización:</strong> Docker - Estandariza el entorno de desarrollo y despliegue.</div></li>
+                    <li class="flex items-start"><span class="lucide text-primary mt-1">&#xea00;</span> <div><strong>Orquestación:</strong> Kubernetes (K8s) - Gestiona el despliegue, escalado y operación de contenedores Docker a escala.</div></li>
+                    <li class="flex items-start"><span class="lucide text-primary mt-1">&#xe9a0;</span> <div><strong>API Gateway:</strong> Spring Cloud Gateway o NGINX - Punto único de entrada, enrutamiento, seguridad.</div></li>
+                    <li class="flex items-start"><span class="lucide text-primary mt-1">&#xe97a;</span> <div><strong>Bases de Datos:</strong> PostgreSQL (Relacional, para datos transaccionales como pedidos, facturas) y MongoDB (NoSQL, opcional para catálogos, logs, o datos menos estructurados). Se elige por servicio.</div></li>
+                    <li class="flex items-start"><span class="lucide text-primary mt-1">&#xe924;</span> <div><strong>Mensajería Asíncrona:</strong> Kafka o RabbitMQ - Para comunicación basada en eventos entre microservicios, desacoplamiento.</div></li>
+                    <li class="flex items-start"><span class="lucide text-primary mt-1">&#xe9c1;</span> <div><strong>Autenticación/Autorización:</strong> OAuth 2.0 / OpenID Connect (implementado con Keycloak o similar) - Estándares para seguridad.</div></li>
+                    <li class="flex items-start"><span class="lucide text-primary mt-1">&#xe9f6;</span> <div><strong>CI/CD (Integración/Despliegue Continuo):</strong> GitHub Actions o Jenkins - Automatización de pruebas y despliegues.</div></li>
+                    <li class="flex items-start"><span class="lucide text-primary mt-1">&#xe90e;</span> <div><strong>Monitoreo y Observabilidad:</strong> Prometheus + Grafana + Loki/Tempo (Stack LGTM) o ELK Stack - Para recolectar métricas, logs y trazas, esencial en microservicios.</div></li>
+                </ul>
+            `,
+
+        planificacion: `
+                <h2>Planificación Propuesta (6 Semanas)</h2>
+                <p>Se propone una planificación ágil basada en sprints semanales, utilizando herramientas colaborativas como Trello o Miro para visualizar el progreso.</p>
+                <ol class="list-decimal list-inside space-y-2">
+                    <li><strong>Semana 1: Descubrimiento y Diseño Inicial</strong>
+                        <ul class="list-disc list-inside ml-6 text-base">
+                            <li>Análisis detallado del sistema monolítico actual.</li>
+                            <li>Levantamiento y priorización de requerimientos funcionales y no funcionales.</li>
+                            <li>Definición de límites de los microservicios (Context Mapping).</li>
+                            <li>Diseño inicial de la arquitectura y APIs.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Semana 2: Setup y Microservicio Core 1 (Ej: Usuarios)</strong>
+                         <ul class="list-disc list-inside ml-6 text-base">
+                            <li>Configuración del entorno de desarrollo, K8s, CI/CD básico.</li>
+                            <li>Implementación y pruebas del microservicio de Usuarios y Autenticación.</li>
+                            <li>Configuración inicial del API Gateway.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Semana 3: Microservicios Core 2 y 3 (Ej: Pedidos, Inventario)</strong>
+                         <ul class="list-disc list-inside ml-6 text-base">
+                            <li>Desarrollo de los microservicios de Pedidos e Inventario.</li>
+                            <li>Implementación de comunicación básica (API síncrona).</li>
+                            <li>Primeras pruebas de integración entre servicios.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Semana 4: Microservicios Core 4 y 5 (Ej: Facturación, Despachos)</strong>
+                         <ul class="list-disc list-inside ml-6 text-base">
+                            <li>Desarrollo de los microservicios de Facturación y Despachos.</li>
+                            <li>Integración con mensajería asíncrona (si aplica).</li>
+                            <li>Refinamiento de APIs y contratos.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Semana 5: Servicios de Soporte, Pruebas End-to-End</strong>
+                         <ul class="list-disc list-inside ml-6 text-base">
+                            <li>Implementación de microservicios restantes (Reportes, Int. Bancaria).</li>
+                            <li>Pruebas de integración completas y End-to-End.</li>
+                            <li>Ajustes de rendimiento y seguridad.</li>
+                             <li>Configuración de monitoreo básico.</li>
+                        </ul>
+                    </li>
+                     <li><strong>Semana 6: Despliegue Beta, Documentación y Presentación</strong>
+                         <ul class="list-disc list-inside ml-6 text-base">
+                            <li>Despliegue en un entorno de pre-producción (Beta).</li>
+                            <li>Pruebas de aceptación de usuario (UAT) iniciales.</li>
+                            <li>Finalización de documentación técnica y de usuario.</li>
+                            <li>Preparación y realización de la presentación final.</li>
+                        </ul>
+                    </li>
+                </ol>
+                <p><strong>Roles Clave:</strong></p>
+                 <ul class="list-disc list-inside space-y-1">
+                    <li><strong>Líder de Proyecto/Scrum Master:</strong> Facilita el proceso, elimina impedimentos.</li>
+                    <li><strong>Arquitecto de Software:</strong> Define y supervisa la arquitectura.</li>
+                    <li><strong>Analista de Negocio:</strong> Define requerimientos, valida funcionalidades.</li>
+                    <li><strong>Desarrolladores Backend (varios):</strong> Implementan los microservicios.</li>
+                    <li><strong>Ingeniero DevOps:</strong> Gestiona infraestructura, CI/CD, monitoreo.</li>
+                    <li><strong>Ingeniero QA/Tester:</strong> Diseña y ejecuta pruebas.</li>
+                </ul>
+            `,
+
+        etico: `
+                <h2>Enfoque Ético y Consideraciones</h2>
+                <p>La modernización tecnológica de AgroPatagonia, si bien necesaria, debe realizarse considerando sus implicaciones éticas, sociales y técnicas:</p>
+                <ul class="list-disc list-inside space-y-2">
+                    <li><strong class="font-semibold text-blue-600">Privacidad y Seguridad de Datos:</strong>
+                        <ul class="list-circle list-inside ml-6 text-base">
+                            <li>Implementar cifrado en reposo y en tránsito.</li>
+                            <li>Asegurar el cumplimiento de normativas de protección de datos (ej: GDPR si aplica, o leyes locales).</li>
+                            <li>Gestionar consentimientos y accesos basados en roles estrictos (RBAC).</li>
+                             <li>Anonimizar datos para análisis y reportes siempre que sea posible.</li>
+                        </ul>
+                    </li>
+                     <li><strong class="font-semibold text-blue-600">Accesibilidad e Inclusión Digital:</strong>
+                        <ul class="list-circle list-inside ml-6 text-base">
+                            <li>Diseñar interfaces de usuario (UI) intuitivas y fáciles de usar, considerando a usuarios con baja experiencia digital (agricultores, personal de bodega).</li>
+                            <li>Proveer documentación clara y soporte accesible.</li>
+                            <li>Considerar la brecha digital: ¿El sistema requiere conectividad constante? ¿Hay alternativas offline o de bajo ancho de banda?</li>
+                        </ul>
+                    </li>
+                    <li><strong class="font-semibold text-blue-600">Impacto Laboral y Formación:</strong>
+                        <ul class="list-circle list-inside ml-6 text-base">
+                            <li>La automatización puede cambiar roles. Planificar la capacitación necesaria para que los empleados se adapten a las nuevas herramientas y procesos.</li>
+                            <li>Comunicar transparentemente los cambios y ofrecer soporte durante la transición.</li>
+                        </ul>
+                    </li>
+                    <li><strong class="font-semibold text-blue-600">Sostenibilidad y Eficiencia:</strong>
+                        <ul class="list-circle list-inside ml-6 text-base">
+                            <li>Aunque los microservicios permiten escalar eficientemente, monitorear el consumo de recursos para evitar el sobreaprovisionamiento.</li>
+                            <li>Optimizar consultas a bases de datos y algoritmos para reducir la carga computacional y energética.</li>
+                            <li>Evaluar proveedores de nube con compromisos de sostenibilidad.</li>
+                        </ul>
+                    </li>
+                     <li><strong class="font-semibold text-blue-600">Transparencia y Explicabilidad:</strong>
+                        <ul class="list-circle list-inside ml-6 text-base">
+                            <li>Si se usan algoritmos complejos (ej: para optimizar rutas de despacho o precios), asegurar que sean comprensibles y auditables.</li>
+                            <li>Evitar sesgos algorítmicos que puedan discriminar a ciertos clientes o proveedores.</li>
+                        </ul>
+                    </li>
+                </ul>
+            `,
+            
+        referencias: `
+                <h2>Referencias Bibliográficas</h2>
+                <p>Material consultado y recomendado para profundizar en los conceptos de arquitectura de software y microservicios:</p>
+                <ul class="list-disc list-inside space-y-1">
+                    <li>Bass, L., Clements, P., & Kazman, R. (2021). <em>Software Architecture in Practice</em> (4th ed.). Addison-Wesley Professional.</li>
+                    <li>Newman, S. (2019). <em>Monolith to Microservices: Evolutionary Patterns to Transform Your Monolith</em>. O'Reilly Media.</li>
+                     <li>Newman, S. (2021). <em>Building Microservices: Designing Fine-Grained Systems</em> (2nd ed.). O'Reilly Media.</li>
+                    <li>Richards, M., & Ford, N. (2020). <em>Fundamentals of Software Architecture: An Engineering Approach</em>. O'Reilly Media.</li>
+                    <li>Pautasso, C., Zimmermann, O., & Leymann, F. (2017). Microservices in Practice. <em>IEEE Software, 34</em>(1), 97-104. <a href="https://doi.org/10.1109/MS.2017.22" target="_blank" class="text-primary hover:underline">DOI: 10.1109/MS.2017.22</a></li>
+                </ul>
+                 <h3 class="mt-6">Herramientas y Tecnologías (Enlaces Oficiales):</h3>
+                 <ul class="list-disc list-inside space-y-1">
+                    <li>Spring Boot – <a href="https://spring.io/projects/spring-boot" target="_blank" class="text-primary hover:underline">https://spring.io/projects/spring-boot</a></li>
+                    <li>Docker – <a href="https://docs.docker.com/" target="_blank" class="text-primary hover:underline">https://docs.docker.com/</a></li>
+                    <li>Kubernetes – <a href="https://kubernetes.io/" target="_blank" class="text-primary hover:underline">https://kubernetes.io/</a></li>
+                    <li>Kafka – <a href="https://kafka.apache.org/" target="_blank" class="text-primary hover:underline">https://kafka.apache.org/</a></li>
+                    <li>RabbitMQ – <a href="https://www.rabbitmq.com/" target="_blank" class="text-primary hover:underline">https://www.rabbitmq.com/</a></li>
+                    <li>PostgreSQL – <a href="https://www.postgresql.org/" target="_blank" class="text-primary hover:underline">https://www.postgresql.org/</a></li>
+                    <li>MongoDB – <a href="https://www.mongodb.com/" target="_blank" class="text-primary hover:underline">https://www.mongodb.com/</a></li>
+                    <li>Prometheus – <a href="https://prometheus.io/" target="_blank" class="text-primary hover:underline">https://prometheus.io/</a></li>
+                    <li>Grafana – <a href="https://grafana.com/" target="_blank" class="text-primary hover:underline">https://grafana.com/</a></li>
+                    <li>Trello – <a href="https://trello.com/" target="_blank" class="text-primary hover:underline">https://trello.com/</a></li>
+                    <li>Miro – <a href="https://miro.com/" target="_blank" class="text-primary hover:underline">https://miro.com/</a></li>
+                 </ul>
+            `,
+      };
+
+      // Function to display content and render diagrams
+      function showContent(option) {
+        const contentArea = document.getElementById("content-area");
+        if (contentData[option]) {
+          // Use a temporary container to parse the HTML string
+          const tempContainer = document.createElement("div");
+          tempContainer.innerHTML = contentData[option];
+
+          // Find all mermaid elements in the temporary container
+          const mermaidElements = tempContainer.querySelectorAll(".mermaid");
+
+          // Clear current content
+          contentArea.innerHTML = "";
+          // Append the new content structure
+          while (tempContainer.firstChild) {
+            contentArea.appendChild(tempContainer.firstChild);
+          }
+
+          // Explicitly find mermaid elements *after* inserting into DOM
+          const diagramsToRender = contentArea.querySelectorAll(".mermaid");
+
+          if (diagramsToRender.length > 0) {
+            // Ensure Mermaid library is loaded before calling render
+            if (typeof mermaid !== "undefined" && mermaid.run) {
+              try {
+                // Use mermaid.run() for dynamic rendering
+                mermaid.run({
+                  nodes: diagramsToRender,
+                  suppressErrors: false, // Show errors in console
+                });
+                console.log(
+                  `Mermaid rendering attempted for ${diagramsToRender.length} diagrams in ${option}.`
+                );
+              } catch (error) {
+                console.error("Mermaid rendering failed:", error);
+                diagramsToRender.forEach((el) => {
+                  el.innerHTML = `<pre class="text-red-600">Error rendering diagram: ${
+                    error.message
+                  }\n${el.textContent || el.innerText}</pre>`;
+                  el.classList.add("border", "border-red-400", "p-2");
+                });
+              }
+            } else {
+              console.error(
+                "Mermaid library is not loaded or run method not available."
+              );
+              diagramsToRender.forEach(
+                (el) =>
+                  (el.innerHTML = `<pre class="text-orange-600">Mermaid library not ready.</pre>`)
+              );
+            }
+          } else {
+            // console.log(`No Mermaid diagrams found in ${option}.`);
+          }
+        } else {
+          contentArea.innerHTML = `<div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4" role="alert"><p class="font-bold">Contenido no encontrado</p><p>La sección '${option}' no está definida.</p></div>`;
+        }
+      }
+
+      // Call showContent for the initial view after DOM is ready
+      document.addEventListener("DOMContentLoaded", () => {
+        // You can set a default view here if you like, e.g.:
+        // showContent('contexto');
+        // Or keep the default message by not calling showContent initially
+      });
+    </script>
+  </body>
+</html>

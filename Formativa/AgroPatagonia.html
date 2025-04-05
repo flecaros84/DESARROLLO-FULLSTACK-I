@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caso Agro Patagonia</title>
+    <style>
+        body {
+            display: flex;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            height: 100vh;
+        }
+
+        .menu {
+            width: 200px;
+            background: #333;
+            color: white;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .menu button {
+            background: none;
+            border: none;
+            color: white;
+            padding: 10px;
+            text-align: left;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .menu button:hover {
+            background: #555;
+        }
+
+        .content {
+            flex-grow: 1;
+            padding: 40px 20px;
+            overflow-y: auto;
+            /* Esto agrega scroll vertical si es necesario */
+            text-align: center;
+            font-size: 18px;
+            border-left: 2px solid #ddd;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .content div {
+            width: 80%;
+            max-width: 800px;
+            text-align: justify;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        pre code {
+            display: block;
+            background-color: #000000;
+            color: #ffffff;
+            padding: 1em;
+            border-radius: 8px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.95em;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="menu">
+        <button onclick="showContent('contexto')">Contexto</button>
+        <button onclick="showContent('definicion')">Definición del Problema</button>
+        <button onclick="showContent('estrategia')">Estrategía de Microservicios</button>
+        <button onclick="showContent('herramientas')">Herramientas</button>
+        <button onclick="showContent('planificacion')">Planificación</button>
+        <button onclick="showContent('grafico')">Gráfico Arquitectura Software</button>
+        <button onclick="showContent('etico')">Enfoque Ético</button>
+        <button onclick="showContent('referencias')">Referencias Bibliográficas</button>
+    </div>
+    <div class="content">
+        <div id="content">
+            <h2>Selecciona una opción del menú.</h2>
+            <p>Aquí aparecerá el contenido correspondiente.</p>
+        </div>
+    </div>
+    <script>
+        function showContent(option) {
+            const content = {
+                contexto: `
+                    <img src="img/agropatagonia.jpeg" width="500px">
+                    </br>
+                    <h2>Contexto General</h2>
+                    <p>AgroPatagonia es una empresa chilena con 15 años de trayectoria en la distribución de productos agropecuarios, con presencia en el sur del país. Comenzó sus operaciones en Osorno, atendiendo a pequeños agricultores mediante pedidos telefónicos.</p>
+                    <p>Hace 8 años, en un intento por modernizarse, desarrollaron internamente un sistema digital monolítico que permite registrar pedidos, gestionar inventario, emitir facturas y generar reportes de ventas. Con el tiempo, se añadieron funciones como integración bancaria, control de bodegas y seguimiento de despachos.</p>
+                    <p>Actualmente, la empresa opera en tres regiones y ha experimentado un crecimiento considerable. Este crecimiento, junto con la complejidad operativa que implica manejar procesos simultáneos durante las temporadas altas, ha expuesto importantes limitaciones técnicas del sistema.</p>
+                    
+                `,
+                definicion: `
+                    <h2>Definición del Problema</h2>
+                
+                    <p><strong>Introducción al Problema:</strong> La arquitectura monolítica que en su momento fue funcional, hoy se ha convertido en un obstáculo. Las demoras en tareas simples, las dificultades para mantener el sistema y su incapacidad de escalar adecuadamente, especialmente en periodos de alta demanda, han generado inestabilidad en los servicios digitales de la empresa.</p>
+                    <p>Frente a este escenario, surge la necesidad de repensar la arquitectura tecnológica de AgroPatagonia para garantizar la continuidad operativa, el rendimiento y la capacidad de adaptación frente al crecimiento futuro.</p>
+                    
+                    
+                    <p>AgroPatagonia cuenta con un sistema monolítico desarrollado hace 8 años, el cual presenta serias limitaciones en la actualidad:</p>
+                    <ul>
+                        <li>Alta dependencia entre módulos, lo que complica el mantenimiento.</li>
+                        <li>Operaciones simples como la emisión de facturas se ejecutan con lentitud.</li>
+                        <li>Durante temporadas de alta demanda, el sistema colapsa debido a la carga.</li>
+                        <li>Cualquier modificación (como ajustar precios o rutas de despacho) requiere revisar múltiples módulos interconectados.</li>
+                    </ul>
+                    <p>Estas fallas limitan el crecimiento y la capacidad de adaptación tecnológica de la empresa.</p>
+                `,
+                estrategia: `
+                    <h2>Estrategia de Microservicios</h2>
+                    <p>Se propone migrar a una arquitectura basada en microservicios, dividiendo el sistema en componentes independientes que se comunican mediante APIs.</p>
+                    <p><strong>Ventajas:</strong></p>
+                    <ul>
+                        <li>Escalabilidad independiente de cada módulo.</li>
+                        <li>Facilidad de mantenimiento y actualización.</li>
+                        <li>Mayor disponibilidad del sistema y resiliencia frente a fallos.</li>
+                    </ul>
+                    <p><strong>Microservicios propuestos:</strong></p>
+                    <ul>
+                        <li>Pedidos</li>
+                        <li>Inventario</li>
+                        <li>Facturación</li>
+                        <li>Despachos</li>
+                        <li>Usuarios y Autenticación</li>
+                        <li>Reportes</li>
+                        <li>Integración Bancaria</li>
+                    </ul>
+                    <p>Todos los servicios serán gestionados a través de un <strong>API Gateway</strong>.</p>
+                `,
+                herramientas: `
+                    <h2>Herramientas</h2>
+                    <ul>
+                        <li><strong>Spring Boot</strong> – Desarrollo de microservicios en Java.</li>
+                        <li><strong>Docker</strong> – Contenedores para cada microservicio.</li>
+                        <li><strong>Kubernetes</strong> – Orquestación de contenedores.</li>
+                        <li><strong>API Gateway</strong> – Spring Cloud Gateway o NGINX.</li>
+                        <li><strong>Bases de datos</strong>: PostgreSQL y MongoDB.</li>
+                        <li><strong>Mensajería</strong>: Kafka o RabbitMQ.</li>
+                        <li><strong>Autenticación</strong>: OAuth 2.0 / Keycloak.</li>
+                        <li><strong>CI/CD</strong>: GitHub Actions + Jenkins.</li>
+                        <li><strong>Monitoreo</strong>: Prometheus + Grafana.</li>
+                    </ul>
+                `,
+                planificacion: `
+                    <h2>Planificación</h2>
+                    <p>Se propone una planificación ágil dividida en 6 semanas, con el uso de herramientas como Trello o Miro.</p>
+                    <ol>
+                        <li><strong>Semana 1:</strong> Análisis del sistema actual y levantamiento de requerimientos.</li>
+                        <li><strong>Semana 2:</strong> Diseño de la arquitectura de microservicios.</li>
+                        <li><strong>Semanas 3-4:</strong> Implementación de los microservicios clave.</li>
+                        <li><strong>Semana 5:</strong> Pruebas de integración y ajuste.</li>
+                        <li><strong>Semana 6:</strong> Despliegue y presentación.</li>
+                    </ol>
+                    <p><strong>Roles:</strong> Analista, Desarrollador, DevOps, Tester, Líder de proyecto.</p>
+                `,
+                grafico: `
+                    <h2>Gráfico de Arquitectura de Software</h2>
+                    <p>A continuación, se muestra una descripción de la arquitectura propuesta:</p>
+                    <pre>
+    [ Cliente Web / Móvil ]
+             |
+             v
+        [ API Gateway ]
+             |
+       --------------------------
+       |     |     |     |     |
+    [Pedidos][Inventario][Facturación][Usuarios][Despachos]
+       |        |          |         |         |
+    [DB P]   [DB I]     [DB F]     [DB U]   [DB D]
+             \\___________/
+               [Servicio de Reportes]
+             ↕
+    [Kafka / RabbitMQ - Mensajería Asíncrona]
+                    </pre>
+                    <p>Se recomienda utilizar Draw.io o Miro para representar este diagrama visualmente.</p>
+                `,
+                etico: `
+                    <h2>Enfoque Ético</h2>
+                    <p>La modernización tecnológica debe considerar su impacto social y técnico:</p>
+                    <ul>
+                        <li><strong>Privacidad:</strong> Proteger los datos personales de agricultores y clientes.</li>
+                        <li><strong>Accesibilidad:</strong> Garantizar que los usuarios con baja experiencia digital puedan utilizar el nuevo sistema.</li>
+                        <li><strong>Formación:</strong> Capacitar a los empleados para adaptarse a la nueva tecnología.</li>
+                        <li><strong>Sostenibilidad:</strong> Promover el uso eficiente de recursos tecnológicos y energéticos.</li>
+                    </ul>
+                `,
+                referencias: `
+                    <h2>Referencias Bibliográficas</h2>
+                    <ul>
+                        <li>Bass, L., Clements, P., & Kazman, R. (2013). <em>Software Architecture in Practice</em>. Addison-Wesley.</li>
+                        <li>Newman, S. (2019). <em>Monolith to Microservices</em>. O'Reilly Media.</li>
+                        <li>Pautasso, C., Zimmermann, O., & Leymann, F. (2017). <em>Microservices in Practice</em>. IEEE Software.</li>
+                        <li>Spring Boot – <a href="https://spring.io/projects/spring-boot" target="_blank">https://spring.io/projects/spring-boot</a></li>
+                        <li>Kubernetes – <a href="https://kubernetes.io/" target="_blank">https://kubernetes.io/</a></li>
+                        <li>Docker – <a href="https://docs.docker.com/" target="_blank">https://docs.docker.com/</a></li>
+                        <li>Trello – <a href="https://trello.com/" target="_blank">https://trello.com/</a></li>
+                        <li>Miro – <a href="https://miro.com/" target="_blank">https://miro.com/</a></li>
+                    </ul>
+                `
+            };
+            document.getElementById("content").innerHTML = content[option];
+        }
+    </script>
+    
+    
+</body>
+
+</html>
