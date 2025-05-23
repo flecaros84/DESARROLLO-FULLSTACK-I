@@ -74,6 +74,7 @@ saleservice/
 - `GET /ventas`: Lista todas las ventas.
 - `GET /ventas/{id}`: Obtiene los detalles de una venta por su ID.
 - `POST /ventas`: Registra una nueva venta (incluyendo detalles y factura).
+- `DELETE /ventas/{id}`: Elimina una venta por su ID.
 - `GET /ventas/producto/{id}`: Consulta información de un producto desde el microservicio de productos.
 - `GET /ventas/usuario/{id}`: Consulta información de un usuario desde el microservicio de usuarios.
 
