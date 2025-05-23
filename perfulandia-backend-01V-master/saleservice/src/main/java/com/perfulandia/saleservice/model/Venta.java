@@ -23,7 +23,10 @@ public class Venta {
     private String medioPago;
 
     @OneToMany(mappedBy = "venta", cascade = CascadeType.ALL, orphanRemoval = true)
-
     @JsonManagedReference //Se agrega para evitar loop infito al visualizar en POST
     private List<DetalleVenta> detalles;
+
+    @OneToOne(mappedBy = "venta", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private Factura factura;
 }

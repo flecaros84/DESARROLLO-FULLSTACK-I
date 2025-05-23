@@ -5,6 +5,8 @@ import lombok.*;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Data
 @AllArgsConstructor
@@ -22,6 +24,7 @@ public class Factura {
 
     @OneToOne
     @JoinColumn(name = "venta_id")
+    @JsonBackReference
     private Venta venta;
 
     //Campos para el IVA
