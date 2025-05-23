@@ -1,0 +1,57 @@
+package com.perfulandia.productservice.controller;
+import com.perfulandia.productservice.model.Usuario;
+import com.perfulandia.productservice.model.Producto;
+import com.perfulandia.productservice.service.ProductoService;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+//Nuevas importaciones DTO conexión al ms usuario
+import org.springframework.web.client.RestTemplate;
+//Para hacer peticiones HTTP a otros microservicios
+
+@RestController
+@RequestMapping("/api/productos")
+
+public class ProductoController {
+    private final ProductoService servicio;
+    private final RestTemplate restTemplate;
+    public ProductoController(ProductoService servicio, RestTemplate restTemplate) {
+        this.servicio = servicio;
+        this.restTemplate = restTemplate;
+    }
+
+    //listar
+    @GetMapping
+    public List<Producto> listar() {
+        return servicio.listar();
+    }
+
+    //guardar
+    @PostMapping
+    public Producto guardar(@RequestBody Producto producto) {
+        return servicio.guardar(producto);
+    }
+
+    //buscar
+    @GetMapping("/{id}")
+    public Producto buscar(@PathVariable long id) {
+        return servicio.buscarPorId(id);
+    }
+
+    //eliminar
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable long id) {
+        servicio.eliminar(id);
+    }
+
+    //nuevo método
+    @GetMapping("/usuario/{id}")
+    public Usuario obtenerUsuario(@PathVariable long id){
+        return restTemplate.getForObject("http://localhost:8081/api/usuarios/" + id, Usuario.class);
+    }
+
+
+
+}
+
