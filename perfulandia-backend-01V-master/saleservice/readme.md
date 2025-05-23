@@ -29,40 +29,45 @@ saleservice/
 └── SaleserviceApplication.java
 ```
 
-## ⚙️ Configuración y ejecución
+## 🧱 Estructura de Clases
 
-### Prerrequisitos
+### 📌 1. Modelos (`model`)
 
-- Java 11 o superior
-- Maven 3.6 o superior
-- MySQL 5.7 o superior
+- **`Venta.java`**  Representa una venta realizada. Incluye atributos como ID, cliente, total, medio de pago y una lista de detalles (`DetalleVenta`). Está relacionada con `Factura` y `Usuario`.
 
-### Pasos para ejecutar el servicio
+- **`DetalleVenta.java`**  Define los productos individuales dentro de una venta. Incluye cantidad, precio unitario, y una relación con `Venta`.
 
-1. **Clonar el repositorio**:
+- **`Factura.java`**  Contiene los datos de facturación asociados a una venta, como número de factura, fecha de emisión y monto total.  También incluye los campos necesarios para el cálculo del IVA:  - `neto`: monto antes de impuestos.  - `iva`: monto del impuesto calculado.  - `totalConIva`: total final con impuestos incluidos.
 
-   ```bash
-   git clone https://github.com/flecaros84/DESARROLLO-FULLSTACK-I.git
-   cd DESARROLLO-FULLSTACK-I/perfulandia-backend-01V-master/saleservice
-   ```
+- **`Producto.java`**  Clase auxiliar usada para consultar datos de productos a través de un servicio REST externo. No es persistida en la base de datos local.
 
-2. **Configurar la base de datos**:
+- **`Usuario.java`**  Clase auxiliar para representar datos de clientes consultados mediante REST al microservicio de usuarios.
 
-   Crear una base de datos en MySQL y actualizar el archivo `application.properties` con las credenciales correspondientes.
+### 📌 2. Repositorios (`repository`)
 
-3. **Construir el proyecto**:
+- **`VentaRepository.java`**  Extiende `JpaRepository`. Permite operaciones CRUD sobre ventas.
 
-   ```bash
-   mvn clean install
-   ```
+- **`DetalleVentaRepository.java`**  Interface para acceder a los detalles de cada venta.
 
-4. **Ejecutar la aplicación**:
+- **`FacturaRepository.java`**  Permite persistencia y consulta de facturas emitidas.
 
-   ```bash
-   mvn spring-boot:run
-   ```
+### 📌 3. Servicios (`service`)
 
-   La aplicación estará disponible en `http://localhost:8080`.
+- **`VentaService.java`**  Contiene la lógica de negocio para registrar ventas, calcular totales, y coordinar la creación de detalles y facturas. También gestiona las consultas a los microservicios de productos y usuarios mediante `RestTemplate`.  Además:
+  - Calcula automáticamente el total de la venta a partir de los detalles ingresados.
+  - Genera automáticamente la factura asociada a la venta.
+  - Calcula y aplica el IVA correspondiente durante el proceso.
+
+- **`FacturaService.java`**  Maneja la creación y persistencia de facturas, trabajando junto con `VentaService`.
+
+### 📌 4. Controladores (`controller`)
+
+- **`VentaController.java`**  Expone los endpoints REST para manejar operaciones relacionadas con las ventas:
+  - Registrar nueva venta.
+  - Listar ventas.
+  - Consultar venta por ID.
+  - Consultar producto por ID mediante REST (`/ventas/producto/{id}`).
+  - Consultar usuario por ID mediante REST (`/ventas/usuario/{id}`).
 
 ## 📬 Endpoints principales
 
@@ -96,80 +101,10 @@ saleservice/
 #### 🔎 Descripción de los campos:
 
 - `clienteId`: ID del usuario (cliente) que realiza la compra.
-- `medioPago`: Método de pago utilizado (por ejemplo: `"EFECTIVO"`, `"DEBITO"`, `"CREDITO"`).
+- `medioPago`: Método de pago utilizado (por ejemplo: "EFECTIVO", "DEBITO", "CREDITO").
 - `detalles`: Lista de productos incluidos en la venta:
   - `productoId`: ID del producto vendido.
   - `cantidad`: Cantidad comprada.
   - `precioUnitario`: Precio unitario del producto al momento de la venta.
 
-> 📝 Nota: El campo `fecha` es gestionado automáticamente por el backend y no debe incluirse en la solicitud.
-
-## 🧱 Estructura de Clases
-
-### 📌 1. Modelos (`model`)
-
-- **`Venta.java`**  
-  Representa una venta realizada. Incluye atributos como ID, cliente, total, medio de pago y una lista de detalles (`DetalleVenta`). Está relacionada con `Factura` y `Usuario`.
-
-- **`DetalleVenta.java`**  
-  Define los productos individuales dentro de una venta. Incluye cantidad, precio unitario, y una relación con `Venta`.
-
-- **`Factura.java`**  
-  Contiene los datos de facturación asociados a una venta, como número de factura, fecha de emisión y monto total.
-
-- **`Producto.java`**  
-  Clase auxiliar usada para consultar datos de productos a través de un servicio REST externo. No es persistida en la base de datos local.
-
-- **`Usuario.java`**  
-  Clase auxiliar para representar datos de clientes consultados mediante REST al microservicio de usuarios.
-
-### 📌 2. Repositorios (`repository`)
-
-- **`VentaRepository.java`**  
-  Extiende `JpaRepository`. Permite operaciones CRUD sobre ventas.
-
-- **`DetalleVentaRepository.java`**  
-  Interface para acceder a los detalles de cada venta.
-
-- **`FacturaRepository.java`**  
-  Permite persistencia y consulta de facturas emitidas.
-
-### 📌 3. Servicios (`service`)
-
-- **`VentaService.java`**  
-  Contiene la lógica de negocio para registrar ventas, calcular totales, y coordinar la creación de detalles y facturas. También gestiona las consultas a los microservicios de productos y usuarios mediante `RestTemplate`.
-
-- **`FacturaService.java`**  
-  Maneja la creación y persistencia de facturas, trabajando junto con `VentaService`.
-
-### 📌 4. Controladores (`controller`)
-
-- **`VentaController.java`**  
-  Expone los endpoints REST para manejar operaciones relacionadas con las ventas:  
-  - Registrar nueva venta.
-  - Listar ventas.
-  - Consultar venta por ID.
-  - Consultar producto por ID mediante REST (`/ventas/producto/{id}`).
-  - Consultar usuario por ID mediante REST (`/ventas/usuario/{id}`).
-
-## 🧪 Pruebas
-
-Para ejecutar las pruebas unitarias:
-
-```bash
-mvn test
-```
-
-## 🤝 Contribuciones
-
-Las contribuciones son bienvenidas. Por favor, sigue los siguientes pasos:
-
-1. Haz un fork del repositorio.
-2. Crea una nueva rama: `git checkout -b feature/nueva-funcionalidad`.
-3. Realiza tus cambios y haz commit: `git commit -m 'Agrega nueva funcionalidad'`.
-4. Sube tus cambios: `git push origin feature/nueva-funcionalidad`.
-5. Abre un Pull Request.
-
-## 📄 Licencia
-
-Este proyecto está bajo la licencia MIT. Consulta el archivo [LICENSE](../LICENSE) para más detalles.
+> 📝 Nota: Los campos `fecha` e `id` son gestionados automáticamente por el backend y no deben incluirse en la solicitud.
