@@ -1,12 +1,13 @@
 package com.perfulandia.saleservice.controller;
 
+
 import com.perfulandia.saleservice.model.Factura;
-import com.perfulandia.saleservice.model.Venta;
 import com.perfulandia.saleservice.service.FacturaService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 
 import java.util.List;
 
@@ -28,4 +29,5 @@ public class FacturaController {
     public Factura buscar(@PathVariable long id) {
         return facturaService.buscar(id);
     }
+
 }

@@ -6,6 +6,7 @@ import lombok.*;
 import java.time.LocalDate;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Data
@@ -28,6 +29,7 @@ public class Factura {
 
     @OneToOne
     @JoinColumn(name = "venta_id")
+    @JsonIgnore //
     private Venta venta;
 
     // Campos para el IVA

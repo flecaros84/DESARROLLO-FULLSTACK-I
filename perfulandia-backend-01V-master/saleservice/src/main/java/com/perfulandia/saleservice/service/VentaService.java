@@ -4,6 +4,11 @@ import com.perfulandia.saleservice.model.Venta;
 import com.perfulandia.saleservice.model.DetalleVenta;
 import com.perfulandia.saleservice.model.Factura;
 import com.perfulandia.saleservice.model.Producto;
+//Importaciones para generar boleta completa
+import com.perfulandia.saleservice.model.Usuario;
+import com.perfulandia.saleservice.dto.BoletaCompletaDTO;
+import com.perfulandia.saleservice.dto.DetalleBoletaDTO;
+//
 import com.perfulandia.saleservice.repository.VentaRepository;
 import com.perfulandia.saleservice.repository.FacturaRepository;
 import org.springframework.http.*;
@@ -109,5 +114,42 @@ public class VentaService {
 
     public void eliminar(Long id) {
         ventaRepository.deleteById(id);
+    }
+
+    public BoletaCompletaDTO obtenerBoletaCompleta(Long ventaId) {
+        Venta venta = ventaRepository.findById(ventaId).orElseThrow();
+        Factura factura = facturaRepository.findByVentaId(ventaId)
+                .orElseThrow(() -> new RuntimeException("Factura no encontrada para la venta " + ventaId));
+
+        // Obtener cliente desde usuarioservice
+        Usuario cliente = restTemplate.getForObject(
+                "http://localhost:8081/api/usuarios/" + venta.getClienteId(), Usuario.class
+        );
+
+        // Armar los detalles
+        List<DetalleBoletaDTO> detallesDTO = new ArrayList<>();
+        for (DetalleVenta detalle : venta.getDetalles()) {
+            Producto producto = restTemplate.getForObject(
+                    "http://localhost:8082/api/productos/" + detalle.getProductoId(), Producto.class
+            );
+
+            detallesDTO.add(DetalleBoletaDTO.builder()
+                    .productoId(producto.getId())
+                    .nombreProducto(producto.getNombre())
+                    .cantidad(detalle.getCantidad())
+                    .precioUnitario(detalle.getPrecioUnitario())
+                    .subtotal(detalle.getCantidad() * detalle.getPrecioUnitario())
+                    .build());
+        }
+
+        return BoletaCompletaDTO.builder()
+                .ventaId(venta.getId())
+                .fecha(venta.getFecha())
+                .medioPago(venta.getMedioPago())
+                .total(venta.getTotal())
+                .factura(factura)
+                .cliente(cliente)
+                .detalles(detallesDTO)
+                .build();
     }
 }

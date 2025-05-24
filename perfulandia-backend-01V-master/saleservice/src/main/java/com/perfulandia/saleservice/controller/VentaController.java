@@ -12,6 +12,10 @@ import java.util.List;
 import org.springframework.web.client.RestTemplate;
 //Para hacer peticiones HTTP a otros microservicios.
 
+//Importaciones para boleta completa
+import com.perfulandia.saleservice.dto.BoletaCompletaDTO;
+import org.springframework.http.ResponseEntity;
+
 @RestController
 @RequestMapping("/api/ventas")
 public class VentaController {
@@ -53,6 +57,12 @@ public class VentaController {
     @GetMapping("/producto/{id}")
     public Producto obtenerProducto(@PathVariable long id){
         return restTemplate.getForObject("http://localhost:8082/api/productos/"+id,Producto.class);
+    }
+
+    //Método para obtener la boleta completa
+    @GetMapping("/boleta/{id}")
+    public ResponseEntity<BoletaCompletaDTO> obtenerBoleta(@PathVariable Long id) {
+        return ResponseEntity.ok(ventaService.obtenerBoletaCompleta(id));
     }
 
 }
