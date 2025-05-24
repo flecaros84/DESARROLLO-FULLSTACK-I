@@ -4,16 +4,20 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id"
+)
 public class Factura {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -24,12 +28,11 @@ public class Factura {
 
     @OneToOne
     @JoinColumn(name = "venta_id")
-    @JsonBackReference
     private Venta venta;
 
-    //Campos para el IVA
+    // Campos para el IVA
     private double neto;
     private double iva;
     private double totalConIva;
-
 }
+

@@ -2,53 +2,92 @@ package com.perfulandia.saleservice.service;
 
 import com.perfulandia.saleservice.model.Venta;
 import com.perfulandia.saleservice.model.DetalleVenta;
-import com.perfulandia.saleservice.repository.VentaRepository;
-import org.springframework.stereotype.Service;
-
-import com.perfulandia.saleservice.repository.FacturaRepository;
 import com.perfulandia.saleservice.model.Factura;
-import java.util.UUID;
+import com.perfulandia.saleservice.model.Producto;
+import com.perfulandia.saleservice.repository.VentaRepository;
+import com.perfulandia.saleservice.repository.FacturaRepository;
+import org.springframework.http.*;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
-import java.util.List;
+import java.util.*;
+
 import java.time.LocalDate;
+import java.util.UUID;
+import java.util.List;
 
 @Service
 public class VentaService {
 
-    public final VentaRepository ventaRepository;
+    private final VentaRepository ventaRepository;
     private final FacturaRepository facturaRepository;
+    private final RestTemplate restTemplate;
 
-    public VentaService(VentaRepository ventaRepository, FacturaRepository facturaRepository) {
+    public VentaService(VentaRepository ventaRepository, FacturaRepository facturaRepository, RestTemplate restTemplate) {
         this.ventaRepository = ventaRepository;
         this.facturaRepository = facturaRepository;
+        this.restTemplate = restTemplate;
     }
 
-    //listar
     public List<Venta> listar() {
         return ventaRepository.findAll();
     }
 
-    //guardar
     public Venta guardar(Venta venta) {
         venta.setFecha(LocalDate.now());
         double total = 0.0;
+
         if (venta.getDetalles() != null) {
             for (DetalleVenta detalle : venta.getDetalles()) {
+                // 1. Obtener producto desde productservice
+                Producto producto = restTemplate.getForObject(
+                        "http://localhost:8082/api/productos/" + detalle.getProductoId(),
+                        Producto.class
+                );
+
+                if (producto == null) {
+                    throw new RuntimeException("Producto no encontrado: ID " + detalle.getProductoId());
+                }
+
+                // 2. Verificar stock
+                if (producto.getStock() < detalle.getCantidad()) {
+                    throw new RuntimeException("Stock insuficiente para producto ID: " + detalle.getProductoId());
+                }
+
+                // 3. Asignar precio unitario y venta
+                detalle.setPrecioUnitario(producto.getPrecio());
                 detalle.setVenta(venta);
 
-                double subtotal = detalle.getCantidad() * detalle.getPrecioUnitario();
-                total += subtotal;
+                // 4. Descontar stock usando PUT
+                String url = "http://localhost:8082/api/productos/" + detalle.getProductoId() + "/descontar";
+                Map<String, Integer> body = Map.of("cantidad", detalle.getCantidad());
+
+                HttpHeaders headers = new HttpHeaders();
+                headers.setContentType(MediaType.APPLICATION_JSON);
+                HttpEntity<Map<String, Integer>> entity = new HttpEntity<>(body, headers);
+
+                restTemplate.exchange(
+                        url,
+                        HttpMethod.PUT,
+                        entity,
+                        Void.class
+                );
+
+                // 5. Acumular total
+                total += detalle.getCantidad() * detalle.getPrecioUnitario();
             }
         }
-        venta.setTotal(Math.round(total * 100.0) / 100.0);
+
+        // Redondear total
+        total = Math.round(total * 100.0) / 100.0;
+        venta.setTotal(total);
 
         Venta ventaGuardada = ventaRepository.save(venta);
 
-        // Cálculo de IVA desde el total bruto
+        // Crear factura con desglose de IVA
         double neto = Math.round((total / 1.19) * 100.0) / 100.0;
         double iva = Math.round((total - neto) * 100.0) / 100.0;
 
-        // Crear la factura con desglose
         Factura factura = Factura.builder()
                 .tipo("BOLETA")
                 .folio(UUID.randomUUID().toString())
@@ -64,14 +103,11 @@ public class VentaService {
         return ventaGuardada;
     }
 
-    //buscar
     public Venta buscar(Long id) {
         return ventaRepository.findById(id).orElse(null);
     }
 
-    //eliminar
     public void eliminar(Long id) {
         ventaRepository.deleteById(id);
     }
-
 }
