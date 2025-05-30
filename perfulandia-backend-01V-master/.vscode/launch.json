@@ -1,0 +1,46 @@
+{
+	"configurations": [
+		{
+			"type": "java",
+			"name": "Spring Boot-InventoryserviceApplication<inventoryservice>",
+			"request": "launch",
+			"cwd": "${workspaceFolder}",
+			"mainClass": "com.perfulandia.inventoryservice.InventoryserviceApplication",
+			"projectName": "inventoryservice",
+			"args": "",
+			"envFile": "${workspaceFolder}/.env"
+		},
+		{
+			"type": "java",
+			"name": "Spring Boot-ProductserviceApplication<productservice>",
+			"request": "launch",
+			"cwd": "${workspaceFolder}",
+			"mainClass": "com.perfulandia.productservice.ProductserviceApplication",
+			"projectName": "productservice",
+			"args": "",
+			"envFile": "${workspaceFolder}/.env",
+			"vmArgs": " -Dcom.sun.management.jmxremote"
+		},
+		{
+			"type": "java",
+			"name": "Spring Boot-SaleserviceApplication<saleservice>",
+			"request": "launch",
+			"cwd": "${workspaceFolder}",
+			"mainClass": "com.perfulandia.saleservice.SaleserviceApplication",
+			"projectName": "saleservice",
+			"args": "",
+			"envFile": "${workspaceFolder}/.env",
+			"vmArgs": " -Dcom.sun.management.jmxremote"
+		},
+		{
+			"type": "java",
+			"name": "Spring Boot-UsuarioserviceApplication<usuarioservice>",
+			"request": "launch",
+			"cwd": "${workspaceFolder}",
+			"mainClass": "com.perfulandia.usuarioservice.UsuarioserviceApplication",
+			"projectName": "usuarioservice",
+			"args": "",
+			"envFile": "${workspaceFolder}/.env"
+		}
+	]
+}

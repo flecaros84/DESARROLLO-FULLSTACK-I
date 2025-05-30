@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfulandia - Inicio</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Bienvenido a Perfulandia</h1>
+        <nav>
+            <ul>
+                <li><a href="#" class="active">Inicio</a></li>
+                <li><a href="#usuarios">Usuarios</a></li>
+                <li><a href="#productos">Productos</a></li>
+                <li><a href="#inventario">Inventario</a></li>
+                <li><a href="#ventas">Ventas</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="dashboard">
+            <h2>Panel de Control</h2>
+            <div class="stats-container">
+                <div class="stat-card">
+                    <h3>Usuarios</h3>
+                    <p id="user-count">Cargando...</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Productos</h3>
+                    <p id="product-count">Cargando...</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Ventas</h3>
+                    <p id="sale-count">Cargando...</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="usuarios" class="hidden">
+            <h2>Usuarios</h2>
+            <div id="users-list">
+                <!-- Usuarios se cargarán aquí -->
+            </div>
+        </section>
+
+        <section id="productos" class="hidden">
+            <h2>Productos</h2>
+            <div id="products-list">
+                <!-- Productos se cargarán aquí -->
+            </div>
+        </section>
+    </main>
+
+
+    <script src="js/main.js"></script>
+</body>
+</html>

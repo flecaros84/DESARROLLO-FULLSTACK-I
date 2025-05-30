@@ -1,0 +1,192 @@
+{
+	"info": {
+		"_postman_id": "ee9404c0-4a0a-4c57-8a83-f1addd87a3e3",
+		"name": "Perfulandia - Inventario",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "45048367"
+	},
+	"item": [
+		{
+			"name": "Obtener Todo el Inventario",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/inventario/todo",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"inventario",
+						"todo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Agregar/Actualizar Stock",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"productoId\": 1,\r\n  \"sucursalId\": 1,\r\n  \"cantidad\": 15\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/inventario/stock",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"inventario",
+						"stock"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Ver Stock Específico",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/inventario/stock?productoId=1&sucursalId=1",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"inventario",
+						"stock"
+					],
+					"query": [
+						{
+							"key": "productoId",
+							"value": "1"
+						},
+						{
+							"key": "sucursalId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Ajustar Stock(Venta)",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"productoId\": 1,\r\n  \"sucursalId\": 1,\r\n  \"cantidadAjuste\": -2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/inventario/stock/ajustar",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"inventario",
+						"stock",
+						"ajustar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Probar Integración con Ventas",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"clienteId\": 1,\r\n  \"detalles\": [\r\n    {\r\n      \"productoId\": 1,\r\n      \"cantidad\": 2\r\n    }\r\n  ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{salesUrl}}/api/ventas",
+					"host": [
+						"{{salesUrl}}"
+					],
+					"path": [
+						"api",
+						"ventas"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8083",
+			"type": "string"
+		},
+		{
+			"key": "salesUrl",
+			"value": "http://localhost:8084",
+			"type": "string"
+		}
+	]
+}

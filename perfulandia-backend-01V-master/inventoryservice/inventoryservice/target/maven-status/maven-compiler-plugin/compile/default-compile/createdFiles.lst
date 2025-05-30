@@ -1,0 +1,12 @@
+com\perfulandia\inventoryservice\InventoryserviceApplication.class
+com\perfulandia\inventoryservice\service\InventarioService.class
+com\perfulandia\inventoryservice\repository\InventarioRepository.class
+com\perfulandia\inventoryservice\service\SucursalService.class
+com\perfulandia\inventoryservice\controller\InventarioController.class
+com\perfulandia\inventoryservice\model\Producto.class
+com\perfulandia\inventoryservice\model\Sucursal$SucursalBuilder.class
+com\perfulandia\inventoryservice\model\Sucursal.class
+com\perfulandia\inventoryservice\repository\SucursalRepository.class
+com\perfulandia\inventoryservice\model\Inventario.class
+com\perfulandia\inventoryservice\controller\SucursalController.class
+com\perfulandia\inventoryservice\model\Inventario$InventarioBuilder.class
